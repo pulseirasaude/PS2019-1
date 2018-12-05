@@ -84,19 +84,6 @@ public class Home1 extends javax.swing.JFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         tabela = new javax.swing.JTable();
         Financeiro = new javax.swing.JPanel();
-        Label_Financeiro = new javax.swing.JLabel();
-        Scroll_Saida = new javax.swing.JScrollPane();
-        tabelaSaidaFinanceiro = new javax.swing.JTable();
-        Label_Saida = new javax.swing.JLabel();
-        pesquisarSaidaFinanceiro = new javax.swing.JTextField();
-        botaopesquisarSaidaFinanceiro = new javax.swing.JButton();
-        botaoCadastroSaida = new javax.swing.JButton();
-        Scroll_Entrada = new javax.swing.JScrollPane();
-        tabelaEntradaFinanceiro = new javax.swing.JTable();
-        botaoCadastrarEntradaFinanceiro = new javax.swing.JButton();
-        botaoPesquisaEntradaFinanceiro = new javax.swing.JButton();
-        pesquisaEntradaFinanceiro = new javax.swing.JTextField();
-        Label_Entrada = new javax.swing.JLabel();
         Funcionarios = new javax.swing.JPanel();
         Label_Funcionarios = new javax.swing.JLabel();
         pesquisarFuncionarios = new javax.swing.JTextField();
@@ -121,7 +108,6 @@ public class Home1 extends javax.swing.JFrame {
         homeMenu = new javax.swing.JMenu();
         servicosMenu = new javax.swing.JMenu();
         veiculosMenu = new javax.swing.JMenu();
-        financeiroMenu = new javax.swing.JMenu();
         funcionariosMenu = new javax.swing.JMenu();
         clientesMenu = new javax.swing.JMenu();
 
@@ -347,165 +333,15 @@ public class Home1 extends javax.swing.JFrame {
 
         Financeiro.setBackground(new java.awt.Color(255, 255, 255));
 
-        Label_Financeiro.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        Label_Financeiro.setText("Financeiro");
-
-        tabelaSaidaFinanceiro.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "n°", "Nome", "Endereço", "CPF", "Email", "CNH", "Categoria", "Validade", "Detalhes"
-            }
-        ));
-        Scroll_Saida.setViewportView(tabelaSaidaFinanceiro);
-
-        Label_Saida.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        Label_Saida.setText("Tabela de Saida");
-
-        pesquisarSaidaFinanceiro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pesquisarSaidaFinanceiroActionPerformed(evt);
-            }
-        });
-
-        botaopesquisarSaidaFinanceiro.setText("Pesquisar");
-
-        botaoCadastroSaida.setText("Cadastrar");
-        botaoCadastroSaida.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botaoCadastroSaidaMouseClicked(evt);
-            }
-        });
-        botaoCadastroSaida.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoCadastroSaidaActionPerformed(evt);
-            }
-        });
-
-        tabelaEntradaFinanceiro.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "n°", "Nome", "Endereço", "CPF", "Email", "Detalhes"
-            }
-        ));
-        Scroll_Entrada.setViewportView(tabelaEntradaFinanceiro);
-
-        botaoCadastrarEntradaFinanceiro.setText("Cadastrar");
-        botaoCadastrarEntradaFinanceiro.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botaoCadastrarEntradaFinanceiroMouseClicked(evt);
-            }
-        });
-        botaoCadastrarEntradaFinanceiro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoCadastrarEntradaFinanceiroActionPerformed(evt);
-            }
-        });
-
-        botaoPesquisaEntradaFinanceiro.setText("Pesquisar");
-        botaoPesquisaEntradaFinanceiro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoPesquisaEntradaFinanceiroActionPerformed(evt);
-            }
-        });
-
-        pesquisaEntradaFinanceiro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pesquisaEntradaFinanceiroActionPerformed(evt);
-            }
-        });
-
-        Label_Entrada.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        Label_Entrada.setText("Tabela de Entrada");
-
         javax.swing.GroupLayout FinanceiroLayout = new javax.swing.GroupLayout(Financeiro);
         Financeiro.setLayout(FinanceiroLayout);
         FinanceiroLayout.setHorizontalGroup(
             FinanceiroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(FinanceiroLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(FinanceiroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(Label_Entrada)
-                    .addComponent(Label_Financeiro))
-                .addGap(74, 74, 74)
-                .addComponent(pesquisaEntradaFinanceiro, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(botaoPesquisaEntradaFinanceiro)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(botaoCadastrarEntradaFinanceiro, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(72, 72, 72))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FinanceiroLayout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addComponent(Label_Saida)
-                .addGap(99, 99, 99)
-                .addComponent(pesquisarSaidaFinanceiro, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(botaopesquisarSaidaFinanceiro)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(botaoCadastroSaida, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(69, 69, 69))
-            .addGroup(FinanceiroLayout.createSequentialGroup()
-                .addGroup(FinanceiroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(FinanceiroLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(Scroll_Entrada, javax.swing.GroupLayout.PREFERRED_SIZE, 676, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(FinanceiroLayout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(Scroll_Saida, javax.swing.GroupLayout.PREFERRED_SIZE, 676, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(71, Short.MAX_VALUE))
+            .addGap(0, 766, Short.MAX_VALUE)
         );
         FinanceiroLayout.setVerticalGroup(
             FinanceiroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FinanceiroLayout.createSequentialGroup()
-                .addContainerGap(40, Short.MAX_VALUE)
-                .addGroup(FinanceiroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Label_Financeiro, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FinanceiroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(pesquisaEntradaFinanceiro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(botaoPesquisaEntradaFinanceiro)
-                        .addComponent(botaoCadastrarEntradaFinanceiro)))
-                .addGap(18, 18, 18)
-                .addComponent(Label_Entrada)
-                .addGap(14, 14, 14)
-                .addComponent(Scroll_Entrada, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
-                .addGroup(FinanceiroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(pesquisarSaidaFinanceiro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botaopesquisarSaidaFinanceiro)
-                    .addComponent(botaoCadastroSaida)
-                    .addComponent(Label_Saida))
-                .addGap(38, 38, 38)
-                .addComponent(Scroll_Saida, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(59, 59, 59))
+            .addGap(0, 527, Short.MAX_VALUE)
         );
 
         Funcionarios.setBackground(new java.awt.Color(255, 255, 255));
@@ -790,15 +626,6 @@ public class Home1 extends javax.swing.JFrame {
         });
         jMenuBar1.add(veiculosMenu);
 
-        financeiroMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/debt.png"))); // NOI18N
-        financeiroMenu.setText("Financeiro");
-        financeiroMenu.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                financeiroMenuMouseClicked(evt);
-            }
-        });
-        jMenuBar1.add(financeiroMenu);
-
         funcionariosMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/employee.png"))); // NOI18N
         funcionariosMenu.setText("Funcionarios");
         funcionariosMenu.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -913,26 +740,6 @@ public class Home1 extends javax.swing.JFrame {
                   // TODO add your handling code here:
     }//GEN-LAST:event_botaoCadastrarVeiculosActionPerformed
 
-    private void pesquisarSaidaFinanceiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarSaidaFinanceiroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pesquisarSaidaFinanceiroActionPerformed
-
-    private void botaoCadastroSaidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastroSaidaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botaoCadastroSaidaActionPerformed
-
-    private void botaoCadastrarEntradaFinanceiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastrarEntradaFinanceiroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botaoCadastrarEntradaFinanceiroActionPerformed
-
-    private void pesquisaEntradaFinanceiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisaEntradaFinanceiroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pesquisaEntradaFinanceiroActionPerformed
-
-    private void botaoPesquisaEntradaFinanceiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoPesquisaEntradaFinanceiroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botaoPesquisaEntradaFinanceiroActionPerformed
-
     private void veiculosMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_veiculosMenuMouseClicked
         // TODO add your handling code here:
         
@@ -949,11 +756,6 @@ public class Home1 extends javax.swing.JFrame {
         setContentPane(Veiculos);
         
     }//GEN-LAST:event_veiculosMenuMouseClicked
-
-    private void financeiroMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_financeiroMenuMouseClicked
-        // TODO add your handling code here:
-        setContentPane(Financeiro);         
-    }//GEN-LAST:event_financeiroMenuMouseClicked
 
     private void funcionariosMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_funcionariosMenuMouseClicked
         // TODO add your handling code here:
@@ -1016,19 +818,6 @@ public class Home1 extends javax.swing.JFrame {
         CadastroVeiculo Cadastro_Veiculo = new CadastroVeiculo();
         Cadastro_Veiculo.setVisible(true);
     }//GEN-LAST:event_botaoCadastrarVeiculosMouseClicked
-
-    private void botaoCadastrarEntradaFinanceiroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoCadastrarEntradaFinanceiroMouseClicked
-         CadastroFinanceiroEntrada Cadastro_Entrada = new CadastroFinanceiroEntrada();
-        Cadastro_Entrada.setVisible(true);
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botaoCadastrarEntradaFinanceiroMouseClicked
-
-    private void botaoCadastroSaidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoCadastroSaidaMouseClicked
-        CadastroFinanceiroSaida Cadastro_Saida = new CadastroFinanceiroSaida();
-        Cadastro_Saida.setVisible(true);
-        // TODO add your handling code here:
-            
-    }//GEN-LAST:event_botaoCadastroSaidaMouseClicked
 
     private void botaoCadastrarFuncionarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoCadastrarFuncionarioMouseClicked
         // TODO add your handling code here:
@@ -1128,35 +917,25 @@ public class Home1 extends javax.swing.JFrame {
     private javax.swing.JPanel Home;
     private javax.swing.JLabel Label_Clientes;
     private javax.swing.JLabel Label_Clientes1;
-    private javax.swing.JLabel Label_Entrada;
-    private javax.swing.JLabel Label_Financeiro;
     private javax.swing.JLabel Label_Funcionarios;
     private javax.swing.JLabel Label_Home;
     private javax.swing.JLabel Label_Principal3;
-    private javax.swing.JLabel Label_Saida;
     private javax.swing.JLabel Label_Servico;
     private javax.swing.JLabel Label_Veiculo;
-    private javax.swing.JScrollPane Scroll_Entrada;
-    private javax.swing.JScrollPane Scroll_Saida;
     private javax.swing.JPanel Servico;
     private javax.swing.JPanel Veiculos;
     private javax.swing.JButton botaoBuscarServico;
     private javax.swing.JButton botaoCadastrarCliente;
-    private javax.swing.JButton botaoCadastrarEntradaFinanceiro;
     private javax.swing.JButton botaoCadastrarFuncionario;
     private javax.swing.JButton botaoCadastrarServico;
     private javax.swing.JButton botaoCadastrarVeiculos;
     private javax.swing.JButton botaoCadastroMotorista;
-    private javax.swing.JButton botaoCadastroSaida;
-    private javax.swing.JButton botaoPesquisaEntradaFinanceiro;
     private javax.swing.JButton botaoPesquisarFuncionarios;
     private javax.swing.JButton botaoPesquisarVeiculos;
     private javax.swing.JButton botaopesquisarMotorista;
-    private javax.swing.JButton botaopesquisarSaidaFinanceiro;
     private javax.swing.JTextField buscarServico;
     private javax.swing.JMenu clientesMenu;
     private javax.swing.JLabel data;
-    private javax.swing.JMenu financeiroMenu;
     private javax.swing.JMenu funcionariosMenu;
     private javax.swing.JMenu homeMenu;
     private javax.swing.JLabel hora;
@@ -1167,19 +946,15 @@ public class Home1 extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JTextField pesquisaEntradaFinanceiro;
     private javax.swing.JTextField pesquisarCliente;
     private javax.swing.JTextField pesquisarFuncionarios;
     private javax.swing.JTextField pesquisarMotorista;
-    private javax.swing.JTextField pesquisarSaidaFinanceiro;
     private javax.swing.JTextField pesquisarVeiculos;
     private javax.swing.JMenu servicosMenu;
     private javax.swing.JTable tabela;
     private javax.swing.JTable tabelaClientes;
-    private javax.swing.JTable tabelaEntradaFinanceiro;
     private javax.swing.JTable tabelaFuncionarios;
     private javax.swing.JTable tabelaMotorista;
-    private javax.swing.JTable tabelaSaidaFinanceiro;
     private javax.swing.JTable tabelaServico;
     private javax.swing.JMenu veiculosMenu;
     // End of variables declaration//GEN-END:variables
