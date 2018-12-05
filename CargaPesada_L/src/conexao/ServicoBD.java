@@ -71,11 +71,11 @@ public class ServicoBD implements InterfaceBD{
                 "',"+ novo.getValorContrato()+ 
                 ",'"+ novo.getDataInicio()+ 
                 "','"+ novo.getDataFim()+
-                "',"+ novo.getTipo()+
+                "','"+ novo.getTipo()+
                 "',"+ novo.getPeso()+
-                "',"+ novo.getVolume()+
+                ",'"+ novo.getVolume()+
                 "',"+ novo.getQuantidade()+
-                "',"+ novo.getDistancia()+
+                ",'"+ novo.getDistancia()+
                 "',"+ novo.getIdCliente()+
                 ","+ novo.getIdFuncionario()+
                 ","+ novo.getIdVeiculo()+") RETURNING id");
