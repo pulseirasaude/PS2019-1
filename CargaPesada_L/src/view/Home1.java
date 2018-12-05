@@ -33,8 +33,9 @@ import modelo.Veiculo;
  */
 public class Home1 extends javax.swing.JFrame {
     
-    ArrayList clientes = null;
+    ArrayList<Cliente> clientes = null;
     CadastroCliente cliente = new CadastroCliente();
+    ClienteBD clientes_conn = new ClienteBD();
     /**
      * Creates new form Home
      */
@@ -114,8 +115,8 @@ public class Home1 extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tabelaClientes = new javax.swing.JTable();
         pesquisarCliente = new javax.swing.JTextField();
-        botaoPesquisarCliente = new javax.swing.JButton();
         botaoCadastrarCliente = new javax.swing.JButton();
+        Label_Clientes1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         homeMenu = new javax.swing.JMenu();
         servicosMenu = new javax.swing.JMenu();
@@ -683,6 +684,7 @@ public class Home1 extends javax.swing.JFrame {
                 "n°", "Nome", "CPF", "CNPJ", "Contato", "Endereço"
             }
         ));
+        tabelaClientes.setCellSelectionEnabled(true);
         tabelaClientes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tabelaClientesMouseClicked(evt);
@@ -701,8 +703,6 @@ public class Home1 extends javax.swing.JFrame {
             }
         });
 
-        botaoPesquisarCliente.setText("Pesquisar");
-
         botaoCadastrarCliente.setText("Cadastrar");
         botaoCadastrarCliente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -715,33 +715,40 @@ public class Home1 extends javax.swing.JFrame {
             }
         });
 
+        Label_Clientes1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        Label_Clientes1.setText("PESQUISAR");
+
         javax.swing.GroupLayout ClientesLayout = new javax.swing.GroupLayout(Clientes);
         Clientes.setLayout(ClientesLayout);
         ClientesLayout.setHorizontalGroup(
             ClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ClientesLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 677, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(41, Short.MAX_VALUE))
+            .addGroup(ClientesLayout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addComponent(Label_Clientes)
                 .addGap(101, 101, 101)
-                .addComponent(pesquisarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(botaoPesquisarCliente)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
-                .addComponent(botaoCadastrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(71, 71, 71))
-            .addGroup(ClientesLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 677, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(ClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ClientesLayout.createSequentialGroup()
+                        .addComponent(Label_Clientes1)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(ClientesLayout.createSequentialGroup()
+                        .addComponent(pesquisarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botaoCadastrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(71, 71, 71))))
         );
         ClientesLayout.setVerticalGroup(
             ClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ClientesLayout.createSequentialGroup()
-                .addContainerGap(83, Short.MAX_VALUE)
+                .addContainerGap(48, Short.MAX_VALUE)
+                .addComponent(Label_Clientes1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(ClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Label_Clientes)
                     .addComponent(pesquisarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botaoPesquisarCliente)
                     .addComponent(botaoCadastrarCliente))
                 .addGap(65, 65, 65)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -966,11 +973,10 @@ public class Home1 extends javax.swing.JFrame {
 
     private void clientesMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clientesMenuMouseClicked
         // TODO add your handling code here:
-        ClienteBD clientes_conn = new ClienteBD();
-        
+                
         
         try {
-            clientes = clientes_conn.select(" limit 10");
+            clientes = clientes_conn.select(" limit 100");
         } catch (SQLException ex) {
             Logger.getLogger(Home1.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1038,7 +1044,7 @@ public class Home1 extends javax.swing.JFrame {
 
     private void tabelaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaClientesMouseClicked
         // TODO add your handling code here:
-        if (evt.getClickCount() == 2){
+        if (evt.getClickCount() == 2 && evt.getButton() == evt.BUTTON1){
             int linha = tabelaClientes.getSelectedRow();
             try {
                 cliente.auxAlteracao((Cliente)this.clientes.get(linha));
@@ -1052,22 +1058,20 @@ public class Home1 extends javax.swing.JFrame {
     private void pesquisarClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pesquisarClienteKeyPressed
         // TODO add your handling code here:
         if(evt.getKeyCode() == evt.VK_ENTER){
-         
-            VeiculoBD veiculo = new VeiculoBD();
-            List<Veiculo> veiculoL = new ArrayList<Veiculo>();
-        
-             try {
-                 veiculoL = veiculo.select("where nome ilike '%" + nomeCliente.getText() + "%'");
-             } catch (SQLException ex) {
-                 Logger.getLogger(CadastroServico.class.getName()).log(Level.SEVERE, null, ex);
-             }
-            DefaultTableModel mod = new DefaultTableModel();
-            
-            dialog.dadostabelV(veiculoL, null); 
-            dialog.setVisible(true);
-            nomeCliente.setText(dialog.getNome());
-            serv.setIdVeiculo(dialog.getId());
-        }
+
+            try {
+                clientes = clientes_conn.select(" where nome ilike '%" + pesquisarCliente.getText() + "%' ");
+            } catch (SQLException ex) {
+                Logger.getLogger(Home1.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            Veiculos.setLayout(new BorderLayout());
+            TABELA aux = new TABELA();
+            aux.dadostabelC(clientes,tabelaClientes);   
+
+            setContentPane(Clientes); 
+        }                                         
+
     }//GEN-LAST:event_pesquisarClienteKeyPressed
 
     /**
@@ -1112,6 +1116,7 @@ public class Home1 extends javax.swing.JFrame {
     private javax.swing.JPanel Funcionarios;
     private javax.swing.JPanel Home;
     private javax.swing.JLabel Label_Clientes;
+    private javax.swing.JLabel Label_Clientes1;
     private javax.swing.JLabel Label_Entrada;
     private javax.swing.JLabel Label_Financeiro;
     private javax.swing.JLabel Label_Funcionarios;
@@ -1133,7 +1138,6 @@ public class Home1 extends javax.swing.JFrame {
     private javax.swing.JButton botaoCadastroMotorista;
     private javax.swing.JButton botaoCadastroSaida;
     private javax.swing.JButton botaoPesquisaEntradaFinanceiro;
-    private javax.swing.JButton botaoPesquisarCliente;
     private javax.swing.JButton botaoPesquisarFuncionarios;
     private javax.swing.JButton botaoPesquisarVeiculos;
     private javax.swing.JButton botaopesquisarMotorista;

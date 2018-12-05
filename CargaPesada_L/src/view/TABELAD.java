@@ -90,6 +90,7 @@ public class TABELAD extends javax.swing.JDialog {
                 modelo. addRow(new String[]{Integer.toString(gen.getId()), gen.getNome()});
             }
         }
+        //modelo.setEnabled(false);
         tabela.setModel(modelo);
     }
         
