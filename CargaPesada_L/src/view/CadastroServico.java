@@ -30,7 +30,7 @@ public class CadastroServico extends javax.swing.JFrame {
     CadastroEndereco endereco2 = new CadastroEndereco();
     
     Servico serv = new Servico();
-    TABELAD dialog = new TABELAD(new javax.swing.JFrame(), true);
+    TABELA_DIALOGO dialog = new TABELA_DIALOGO(new javax.swing.JFrame(), true);
     public CadastroServico() {
         initComponents();
     }

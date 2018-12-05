@@ -5,27 +5,27 @@
  */
 package view;
 
-import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelo.Cliente;
 import modelo.Endereco;
-import modelo.Funcionario;
-import modelo.Motorista;
-import modelo.Servico;
 import modelo.Veiculo;
 
 /**
  *
  * @author walla
  */
-public class TABELA extends javax.swing.JFrame {
-    
+public class TABELA_DIALOGO extends javax.swing.JDialog {
+
+    /**
+     * Creates new form TABELA_DIALOGO
+     */
     DefaultTableModel modelo = new DefaultTableModel();
-    int id;
+    int id = 0;
     String nome = " ";
+
+    
 
     public int getId() {
         return id;
@@ -33,109 +33,6 @@ public class TABELA extends javax.swing.JFrame {
 
     public String getNome() {
         return nome;
-    }
-    
-    public void dadosTabelaServicos(List<Servico> servicos, JTable tabela) {
-        DefaultTableModel modelo = new DefaultTableModel();
-        
-        if (tabela == null)
-            tabela = jTable1;
-        
-        modelo.addColumn("ID");
-        modelo.addColumn("STATUS");
-        modelo.addColumn("Valor Contrato");
-        modelo.addColumn("Data Inicio");
-        modelo.addColumn("Data Fim");
-        modelo.addColumn("Tipo");
-
-
-                
-        Servico gen;
-        if(servicos.isEmpty()){
-            modelo.addRow(new String[]{"NADA","NADA"});
-            
-        }else{
-            for(int i = 0; i < servicos.size(); i++){
-                gen = servicos.get(i);
-                modelo. addRow(new String[]{
-                                    Integer.toString(gen.getIdServico()),
-                                    Float.toString(gen.getValorContrato()),
-                                    gen.getDataInicio(),
-                                    gen.getDataFim(),
-                                    gen.getTipo()
-                                });
-            }
-        }
-        
-        tabela.setModel(modelo);
-    }
-    
-    public void dadosTabelaMotoristas(List<Motorista> motoristas, JTable tabela) {
-        DefaultTableModel modelo = new DefaultTableModel();
-        
-        if (tabela == null)
-            tabela = jTable1;
-        
-        modelo.addColumn("ID");
-        modelo.addColumn("CNH");
-        modelo.addColumn("Data Vencimento");
-        modelo.addColumn("Categoria CNH");
-        modelo.addColumn("ID Funcionario");
-
-                
-        Motorista gen ;
-        if(motoristas.isEmpty()){
-            modelo.addRow(new String[]{"NADA","NADA"});
-            
-        }else{
-            for(int i = 0; i < motoristas.size(); i++){
-                gen = motoristas.get(i);
-                modelo. addRow(new String[]{Integer.toString(gen.getIdMotorista()), 
-                                gen.getCnh(),
-                                gen.getDataVencimento(),
-                                gen.getCategoriaCnh(),
-                                Integer.toString(gen.getIdFuncionario())
-                                });
-            }
-        }
-        
-        tabela.setModel(modelo);
-    }
-    public void dadosTabelaFuncionario(List<Funcionario> funcionarios, JTable tabela){
-        DefaultTableModel modelo = new DefaultTableModel();
-        
-        if (tabela == null)
-            tabela = jTable1;
-        
-        modelo.addColumn("ID");
-        modelo.addColumn("Nome");
-        modelo.addColumn("CPF");
-        modelo.addColumn("Cargo");
-        modelo.addColumn("Salario");
-        modelo.addColumn("Sexo");
-        modelo.addColumn("Data Cadastro");
-        modelo.addColumn("Data Nascimento");
-                
-        Funcionario gen ;
-        if(funcionarios.isEmpty()){
-            modelo.addRow(new String[]{"NADA","NADA"});
-            
-        }else{
-            for(int i = 0; i < funcionarios.size(); i++){
-                gen = funcionarios.get(i);
-                modelo. addRow(new String[]{Integer.toString(gen.getIdFuncionario()), 
-                                gen.getNome(),
-                                gen.getCpf(),
-                                gen.getCargo(),
-                                Float.toString(gen.getSalario()),
-                                gen.getSexo(),
-                                gen.getDataCadastro(),
-                                gen.getDataNascimento(),
-                                });
-            }
-        }
-        
-        tabela.setModel(modelo);
     }
     
     public void dadostabelV(List<Veiculo> veiculo, JTable tabela){
@@ -182,10 +79,8 @@ public class TABELA extends javax.swing.JFrame {
         if (tabela == null)
             tabela = jTable1;
         
-        
-        modelo.addColumn("Nome");
-        modelo.addColumn("Alterar");
-        
+        modelo.addColumn("Codigo");
+            modelo.addColumn("Nome");
         Cliente gen ;
         if(Clientes.isEmpty()){
             modelo.addRow(new String[]{"NADA","NADA"});
@@ -193,9 +88,10 @@ public class TABELA extends javax.swing.JFrame {
         }else{
             for(int i = 0; i< Clientes.size(); i++){
                 gen = Clientes.get(i);
-                modelo. addRow(new String[]{gen.getNome(),"X"});
+                modelo. addRow(new String[]{Integer.toString(gen.getId()), gen.getNome()});
             }
         }
+        //modelo.setEnabled(false);
         tabela.setModel(modelo);
     }
         
@@ -217,12 +113,8 @@ public class TABELA extends javax.swing.JFrame {
         }
     
     }
-    
-    
-    /**
-     * Creates new form TABELA
-     */
-    public TABELA() {
+    public TABELA_DIALOGO(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
     }
 
@@ -255,6 +147,11 @@ public class TABELA extends javax.swing.JFrame {
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
+            }
+        });
+        jTable1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTable1KeyPressed(evt);
             }
         });
         jScrollPane1.setViewportView(jTable1);
@@ -292,6 +189,11 @@ public class TABELA extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jTable1MouseClicked
 
+    private void jTable1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyPressed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jTable1KeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -309,20 +211,28 @@ public class TABELA extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TABELA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TABELA_DIALOGO.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TABELA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TABELA_DIALOGO.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TABELA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TABELA_DIALOGO.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TABELA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TABELA_DIALOGO.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TABELA().setVisible(true);
+                TABELA_DIALOGO dialog = new TABELA_DIALOGO(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }
@@ -332,6 +242,4 @@ public class TABELA extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
-
-
 }

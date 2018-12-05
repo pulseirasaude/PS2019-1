@@ -844,15 +844,15 @@ public class Home1 extends javax.swing.JFrame {
 
     private void tabelaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaClientesMouseClicked
         // TODO add your handling code here:
-        if (evt.getClickCount() == 2 && evt.getButton() == evt.BUTTON1){
-            int linha = tabelaClientes.getSelectedRow();
-            try {
-                cliente.auxAlteracao((Cliente)this.clientes.get(linha));
-            } catch (SQLException ex) {
-                Logger.getLogger(Home1.class.getName()).log(Level.SEVERE, null, ex);
+            if(tabelaClientes.getSelectedColumn() == 1){
+                int linha = tabelaClientes.getSelectedRow();
+                try {
+                    cliente.auxAlteracao((Cliente)this.clientes.get(linha));
+                } catch (SQLException ex) {
+                    Logger.getLogger(Home1.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                cliente.setVisible(true);
             }
-            cliente.setVisible(true);
-        }
     }//GEN-LAST:event_tabelaClientesMouseClicked
 
     private void pesquisarClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pesquisarClienteKeyPressed
