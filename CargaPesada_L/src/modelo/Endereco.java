@@ -44,6 +44,10 @@ public class Endereco
         return this.estado;
     }
 
+    public String getBairro() {
+        return bairro;
+    }
+
     public int getId() {
         return this.id;
     }

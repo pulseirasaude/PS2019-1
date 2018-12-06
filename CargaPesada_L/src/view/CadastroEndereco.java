@@ -26,6 +26,15 @@ public class CadastroEndereco extends javax.swing.JFrame {
   
     public void auxAlteracao(Endereco end){
         endereco.setText(end.getNome());
+        logradouro.setText(end.getLogradouro());
+        cidade.setText(end.getCidade());
+        bairro.setText(end.getBairro());
+        complemento.setText(end.getComplemento());
+        pontoReferencia.setText(end.getReferencia());
+        cep.setText(end.getCep());
+        estado.setActionCommand(end.getEstado());
+        
+        cadastro.setEnabled(false);
     }
     
     /** Creates new form CadastroEndereco */
@@ -64,6 +73,7 @@ public class CadastroEndereco extends javax.swing.JFrame {
         bairro = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         cep = new javax.swing.JTextField();
+        Alteracao = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -174,6 +184,18 @@ public class CadastroEndereco extends javax.swing.JFrame {
             }
         });
 
+        Alteracao.setText("ALTERAR OS DADOS");
+        Alteracao.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AlteracaoMouseClicked(evt);
+            }
+        });
+        Alteracao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AlteracaoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -209,18 +231,22 @@ public class CadastroEndereco extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cep, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel13)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(cadastro)
-                                .addGap(18, 18, 18)
-                                .addComponent(voltar))
                             .addComponent(pontoReferencia, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel12)
                             .addComponent(jLabel8)
                             .addComponent(bairro, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel11)
                             .addComponent(complemento, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10))
+                            .addComponent(jLabel10)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(cadastro)
+                                .addGap(18, 18, 18)
+                                .addComponent(voltar)))
                         .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(59, 59, 59)
+                .addComponent(Alteracao)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -263,11 +289,13 @@ public class CadastroEndereco extends javax.swing.JFrame {
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cadastro)
                     .addComponent(voltar))
-                .addGap(27, 27, 27))
+                .addGap(18, 18, 18)
+                .addComponent(Alteracao)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -278,7 +306,7 @@ public class CadastroEndereco extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -354,6 +382,15 @@ public class CadastroEndereco extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cepActionPerformed
 
+    private void AlteracaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AlteracaoMouseClicked
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_AlteracaoMouseClicked
+
+    private void AlteracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlteracaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AlteracaoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -390,6 +427,7 @@ public class CadastroEndereco extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Alteracao;
     private javax.swing.JTextField bairro;
     private javax.swing.JButton cadastro;
     private javax.swing.JTextField cep;
