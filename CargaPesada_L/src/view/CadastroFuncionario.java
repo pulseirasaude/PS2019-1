@@ -6,6 +6,8 @@
 package view;
 
 import conexao.ContatoBD;
+import conexao.ContatoFuncionario;
+import conexao.EnderecoFuncionarioBD;
 import conexao.FuncionarioBD;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -30,7 +32,40 @@ public class CadastroFuncionario extends javax.swing.JFrame {
     public CadastroFuncionario() {
         initComponents();
     }
-
+    public Endereco endFuncio(Funcionario funciona) throws SQLException{
+        EnderecoFuncionarioBD end = new EnderecoFuncionarioBD();
+        
+        return end.select(funciona.getIdFuncionario());
+    }
+    public Contato contFuncio(Funcionario funcio) throws SQLException{
+        ContatoFuncionario contato = new ContatoFuncionario();
+        Contato contatoc = new Contato();        
+        contatoc = contato.select(funcio.getIdFuncionario());
+        //System.out.print(contatoc.getEmail());
+        email.setText(contatoc.getEmail());
+        telefone1.setText(contatoc.getTelefone1());
+        telefone2.setText(contatoc.getTelefone2());
+        telefone3.setText(contatoc.getTelefone3());    
+        
+        return contatoc; 
+    }
+    
+    
+     public void auxAlteracao(Funcionario funcionario) throws SQLException{
+        nome.setText(funcionario.getNome());
+       
+     /*   if(cliente.getTipo_cliente() == "F"){
+            tipo_cliente_fisico.setText(cliente.getCpf());
+        }
+        else{
+            tipo_cliente.setText(cliente.getCnpj());
+        }
+    */
+        contFuncio(funcionario);
+        endereco11.auxAlteracao(endFuncio(funcionario));        
+        cadastro.setEnabled(false);
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
