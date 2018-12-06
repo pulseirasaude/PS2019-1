@@ -30,10 +30,9 @@ public class CadastroCliente extends javax.swing.JFrame {
         EnderecoCliente end = new EnderecoCliente();
         
         return end.select(cli.getId());
-        
     }
     
-    public void contCli(Cliente cli) throws SQLException{
+    public Contato contCli(Cliente cli) throws SQLException{
         ContatoCliente contato = new ContatoCliente();
         Contato contatoc = new Contato();        
         contatoc = contato.select(cli.getId());
@@ -42,6 +41,8 @@ public class CadastroCliente extends javax.swing.JFrame {
         telefone1.setText(contatoc.getTelefone1());
         telefone2.setText(contatoc.getTelefone2());
         telefone3.setText(contatoc.getTelefone3());    
+        
+        return contatoc; 
     }
     
     public void auxAlteracao(Cliente cliente) throws SQLException{

@@ -80,7 +80,7 @@ public class TABELA_DIALOGO extends javax.swing.JDialog {
             tabela = jTable1;
         
         modelo.addColumn("Codigo");
-            modelo.addColumn("Nome");
+        modelo.addColumn("Nome");
         Cliente gen ;
         if(Clientes.isEmpty()){
             modelo.addRow(new String[]{"NADA","NADA"});

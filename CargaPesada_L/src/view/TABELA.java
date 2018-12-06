@@ -5,12 +5,14 @@
  */
 package view;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelo.Cliente;
+import modelo.Contato;
 import modelo.Endereco;
 import modelo.Funcionario;
 import modelo.Motorista;
@@ -26,6 +28,7 @@ public class TABELA extends javax.swing.JFrame {
     DefaultTableModel modelo = new DefaultTableModel();
     int id;
     String nome = " ";
+    
 
     public int getId() {
         return id;
@@ -177,25 +180,45 @@ public class TABELA extends javax.swing.JFrame {
      *
      * @param veiculo
      */
-    public void dadostabelC(List<Cliente> Clientes, JTable tabela){
+    public void dadostabelC(List<Cliente> Clientes, JTable tabela) throws SQLException{
         DefaultTableModel modelo = new DefaultTableModel();
+        CadastroCliente cli = new CadastroCliente();
+       
         if (tabela == null)
             tabela = jTable1;
         
-        
+        modelo.addColumn("Codi");
         modelo.addColumn("Nome");
+        modelo.addColumn("CPF");
+        modelo.addColumn("CNPJ");
+        modelo.addColumn("Logadouro");
+        modelo.addColumn("Endereco");
+        modelo.addColumn("Numero");
+        modelo.addColumn("Contato 1");
+        modelo.addColumn("Email");
         modelo.addColumn("Alterar");
+        modelo.addColumn("Deletar");
         
         Cliente gen ;
+        Endereco end;
+        Contato cont;
         if(Clientes.isEmpty()){
-            modelo.addRow(new String[]{"NADA","NADA"});
+            modelo.addRow(new String[]{"NADA"});
             
         }else{
             for(int i = 0; i< Clientes.size(); i++){
                 gen = Clientes.get(i);
-                modelo. addRow(new String[]{gen.getNome(),"X"});
-            }
-        }
+                end = cli.endCli(gen);
+                cont = cli.contCli(gen);
+                System.out.println(gen.getTipo_cliente());
+                if(gen.getTipo_cliente() == "F"){
+                    modelo. addRow(new String[]{Integer.toString(gen.getId()), gen.getNome(),gen.getCpf(),"--", end.getLogradouro(),end.getNome(),Integer.toString(end.getNumero()),cont.getTelefone1(),cont.getEmail(),"X","X"});
+                }else{
+                    modelo. addRow(new String[]{Integer.toString(gen.getId()), gen.getNome(),"--",gen.getCnpj(), end.getLogradouro(),end.getNome(),Integer.toString(end.getNumero()),cont.getTelefone1(),cont.getEmail(),"X","X"});
+                }
+             }
+       }
+        
         tabela.setModel(modelo);
     }
         

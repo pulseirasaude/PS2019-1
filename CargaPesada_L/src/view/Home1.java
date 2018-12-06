@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -559,10 +560,6 @@ public class Home1 extends javax.swing.JFrame {
         ClientesLayout.setHorizontalGroup(
             ClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ClientesLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 677, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(41, Short.MAX_VALUE))
-            .addGroup(ClientesLayout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addComponent(Label_Clientes)
                 .addGap(101, 101, 101)
@@ -572,9 +569,13 @@ public class Home1 extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(ClientesLayout.createSequentialGroup()
                         .addComponent(pesquisarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 227, Short.MAX_VALUE)
                         .addComponent(botaoCadastrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(71, 71, 71))))
+            .addGroup(ClientesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2)
+                .addContainerGap())
         );
         ClientesLayout.setVerticalGroup(
             ClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -784,21 +785,28 @@ public class Home1 extends javax.swing.JFrame {
         setContentPane(Funcionarios); 
     }//GEN-LAST:event_funcionariosMenuMouseClicked
 
-    private void clientesMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clientesMenuMouseClicked
-        // TODO add your handling code here:
-                
-        
+    public void setTabCli(){
         try {
-            clientes = clientes_conn.select(" limit 100");
+            clientes = clientes_conn.select(" limit 10");
         } catch (SQLException ex) {
             Logger.getLogger(Home1.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         Veiculos.setLayout(new BorderLayout());
         TABELA aux = new TABELA();
-        aux.dadostabelC(clientes,tabelaClientes);   
+        try {   
+            aux.dadostabelC(clientes,tabelaClientes);
+        } catch (SQLException ex) {
+            Logger.getLogger(Home1.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
-        setContentPane(Clientes); 
+        setContentPane(Clientes);
+    }
+    private void clientesMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clientesMenuMouseClicked
+        // TODO add your handling code here:
+                
+        setTabCli();
+         
     }//GEN-LAST:event_clientesMenuMouseClicked
 
     private void botaoCadastrarServicoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoCadastrarServicoMouseClicked
@@ -844,14 +852,27 @@ public class Home1 extends javax.swing.JFrame {
 
     private void tabelaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaClientesMouseClicked
         // TODO add your handling code here:
-            if(tabelaClientes.getSelectedColumn() == 1){
-                int linha = tabelaClientes.getSelectedRow();
+            int linha = tabelaClientes.getSelectedRow();
+            if(tabelaClientes.getSelectedColumn() == 9){
+                
                 try {
                     cliente.auxAlteracao((Cliente)this.clientes.get(linha));
                 } catch (SQLException ex) {
                     Logger.getLogger(Home1.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 cliente.setVisible(true);
+            }
+            if(tabelaClientes.getSelectedColumn() == 10){
+                int i = JOptionPane.showConfirmDialog(null,"Deseja excluir?");
+                if(i == JOptionPane.YES_OPTION) {
+                    try {
+                        clientes_conn.delet(clientes.get(linha).getId());
+                        setTabCli();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Home1.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+               
             }
     }//GEN-LAST:event_tabelaClientesMouseClicked
 
@@ -867,7 +888,11 @@ public class Home1 extends javax.swing.JFrame {
 
             Veiculos.setLayout(new BorderLayout());
             TABELA aux = new TABELA();
-            aux.dadostabelC(clientes,tabelaClientes);   
+            try {   
+                aux.dadostabelC(clientes,tabelaClientes);
+            } catch (SQLException ex) {
+                Logger.getLogger(Home1.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
             setContentPane(Clientes); 
         }                                         
