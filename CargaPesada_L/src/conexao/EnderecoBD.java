@@ -29,6 +29,8 @@ public class EnderecoBD implements InterfaceBD{
         Statement stmt;
         c = ConexaoBD.getInstance();
         stmt = c.createStatement();
+        System.out.println(condicao);
+        
         ResultSet rs = stmt.executeQuery("SELECT * FROM ENDERECO "+ condicao);
         while (rs.next()) {
 

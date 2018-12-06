@@ -16,7 +16,7 @@ public class Veiculo {
     private String placa;
     private String status;
     private String tipoCombustivel;
-    private int idCategoria;
+    private int idCategoria = 1;
     private int idSeguro;
     private int idModelo;   //referente ao ID
     private int idMotorista;

@@ -27,7 +27,7 @@ public class CadastroCliente extends javax.swing.JFrame {
     }
     
     public Endereco endCli(Cliente cli) throws SQLException{
-        EnderecoCliente end = new EnderecoCliente();
+        EnderecoClienteBD end = new EnderecoClienteBD();
         
         return end.select(cli.getId());
     }

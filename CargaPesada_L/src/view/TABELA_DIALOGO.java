@@ -23,7 +23,7 @@ public class TABELA_DIALOGO extends javax.swing.JDialog {
      */
     DefaultTableModel modelo = new DefaultTableModel();
     int id = 0;
-    String nome = " ";
+    String nome = "";
 
     
 
@@ -107,11 +107,11 @@ public class TABELA_DIALOGO extends javax.swing.JDialog {
             }else{
                 for(int i = 0; i< veiculo.size(); i++){
                     gen = veiculo.get(i);
+                    
                     modelo. addRow(new String[]{Integer.toString(gen.getId()), gen.getNome()});
                 }
+            }
             jTable1.setModel(modelo);
-        }
-    
     }
     public TABELA_DIALOGO(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -184,7 +184,7 @@ public class TABELA_DIALOGO extends javax.swing.JDialog {
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         int coluna = jTable1.getSelectedColumn();
         int linha = jTable1.getSelectedRow();
-        id = Integer.parseInt((String) jTable1.getValueAt( linha,coluna));
+        id = Integer.parseInt((String) jTable1.getValueAt(linha,coluna));
         nome = (String) jTable1.getValueAt(linha,coluna + 1);
         dispose();
     }//GEN-LAST:event_jTable1MouseClicked

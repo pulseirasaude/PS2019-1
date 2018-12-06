@@ -60,8 +60,10 @@ public class TABELA extends javax.swing.JFrame {
         }else{
             for(int i = 0; i < servicos.size(); i++){
                 gen = servicos.get(i);
+                System.out.println(gen);
                 modelo. addRow(new String[]{
                                     Integer.toString(gen.getIdServico()),
+                                    gen.getStatus(),
                                     Float.toString(gen.getValorContrato()),
                                     gen.getDataInicio(),
                                     gen.getDataFim(),

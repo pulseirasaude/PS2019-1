@@ -69,6 +69,7 @@ public class VeiculoBD implements InterfaceBD{
         Statement stmt;
         Veiculo novo = (Veiculo)obj;
         stmt = c.createStatement();
+        System.out.println(novo.getIdCategoria());
         stmt.executeQuery("INSERT INTO VEICULO(NOME, CHASSI, PLACA, STATUS, "
                 + "COMBUSTIVEL, ID_CATEGORIA, ID_FINANCIAMENTO, ID_SEGURO, ID_MODELO, ID_MOTORISTA) values("
                 +"'"+ novo.getNome()+
@@ -76,10 +77,10 @@ public class VeiculoBD implements InterfaceBD{
                 "','"+ novo.getPlaca()+ 
                 "','"+ novo.getStatus()+ 
                 "','"+ novo.getTipoCombustivel()+
-                "','"+ novo.getIdCategoria()+
-                "','"+ novo.getIdFinanciamento()+
-                "','"+ novo.getIdSeguro()+
-                "',"+ novo.getIdModelo()+
+                "',"+ novo.getIdCategoria()+
+                ","+ novo.getIdFinanciamento()+
+                ","+ novo.getIdSeguro()+
+                ","+ novo.getIdModelo()+
                 ",NULL) RETURNING id");
         
         stmt.close();

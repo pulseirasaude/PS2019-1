@@ -41,7 +41,7 @@ public class ServicoBD implements InterfaceBD{
             servico.setTipo(rs.getString("TIPO"));
             servico.setPeso(rs.getFloat("PESO"));
             servico.setIdCliente(rs.getInt("ID_CLIENTE"));
-            servico.setIdFuncionario(rs.getInt(rs.getInt("ID_FUNCIONARIO")));
+            servico.setIdFuncionario(rs.getInt("ID_FUNCIONARIO"));
             servico.setIdVeiculo(rs.getInt("ID_VEICULO"));
             //Classes que compõe um funcionario
 
@@ -77,8 +77,7 @@ public class ServicoBD implements InterfaceBD{
                 "',"+ novo.getQuantidade()+
                 ",'"+ novo.getDistancia()+
                 "',"+ novo.getIdCliente()+
-                ","+ novo.getIdFuncionario()+
-                ","+ novo.getIdVeiculo()+") RETURNING id");
+                ",2," + novo.getIdVeiculo()+") RETURNING id");
         if(rs.next()){
             novo.setIdServico(rs.getInt(1));
         }

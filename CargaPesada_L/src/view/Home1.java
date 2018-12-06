@@ -853,6 +853,7 @@ public class Home1 extends javax.swing.JFrame {
     private void tabelaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaClientesMouseClicked
         // TODO add your handling code here:
             int linha = tabelaClientes.getSelectedRow();
+            System.out.println(linha);
             if(tabelaClientes.getSelectedColumn() == 9){
                 
                 try {
