@@ -10,7 +10,7 @@ package modelo;
  * @author 20171BSI0367
  */
 public class Categoria {
-    private int idCategoria;
+    private int idCategoriaa;
     private String nome;
 
     public int getIdCategoria() {
