@@ -49,7 +49,9 @@ public class TABELA extends javax.swing.JFrame {
         modelo.addColumn("Valor Contrato");
         modelo.addColumn("Data Inicio");
         modelo.addColumn("Data Fim");
-        modelo.addColumn("Tipo");
+        modelo.addColumn("Tipo");      
+        modelo.addColumn("Alterar");
+       
 
 
                 
@@ -68,7 +70,7 @@ public class TABELA extends javax.swing.JFrame {
                                     gen.getDataInicio(),
                                     gen.getDataFim(),
                                     gen.getTipo()
-                                });
+                                ,"X"});
             }
         }
         
@@ -120,6 +122,8 @@ public class TABELA extends javax.swing.JFrame {
         modelo.addColumn("Sexo");
         modelo.addColumn("Data Cadastro");
         modelo.addColumn("Data Nascimento");
+        modelo.addColumn("Alterar");
+        modelo.addColumn("Deletar");
                 
         Funcionario gen ;
         if(funcionarios.isEmpty()){
@@ -136,7 +140,7 @@ public class TABELA extends javax.swing.JFrame {
                                 gen.getSexo(),
                                 gen.getDataCadastro(),
                                 gen.getDataNascimento(),
-                                });
+                                "X","X"});
             }
         }
         
@@ -156,6 +160,8 @@ public class TABELA extends javax.swing.JFrame {
         modelo.addColumn("Motorista");
         modelo.addColumn("Status");
         modelo.addColumn("Categoria");
+        modelo.addColumn("Alterar");
+        modelo.addColumn("Deletar");
                 
         Veiculo gen ;
         if(veiculo.isEmpty()){
@@ -172,7 +178,7 @@ public class TABELA extends javax.swing.JFrame {
                                 Integer.toString(gen.getIdMotorista()),
                                 Integer.toString(gen.getIdSeguro()),
                                 Integer.toString(gen.getIdCategoria()),
-                                });
+                                "X","X"});
             }
         }
         
