@@ -26,7 +26,7 @@ public class ContatoFuncionario {
         Statement stmt;
         c = ConexaoBD.getInstance();
         stmt = c.createStatement();
-                ResultSet rs = stmt.executeQuery("SELECT * FROM FUNCIONARIO"
+                ResultSet rs = stmt.executeQuery("SELECT * FROM CONTATO "
                 + "INNER JOIN CONTATO_FUNCIONARIO AS EC ON(CONTATO.ID = EC.ID_CONTATO) "
                 + "INNER JOIN FUNCIONARIO AS CLI ON("+idFun+" = EC.ID_FUNCIONARIO)");
         if (rs.next()) {

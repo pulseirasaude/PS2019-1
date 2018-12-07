@@ -1,5 +1,8 @@
 package modelo;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -28,7 +31,12 @@ public class Funcionario {
     public String getCargo() {
         return this.cargo;
     }
-
+    
+    public void setDataCadastro() {
+        Date dataHoraAtual = new Date();
+        this.dataCadastro = new SimpleDateFormat("dd/MM/yyyy").format(dataHoraAtual);    
+    }
+    
     public String getCpf() {
         return this.cpf;
     }
@@ -43,6 +51,10 @@ public class Funcionario {
 
     public int getIdContato() {
         return this.idContato;
+    }
+
+    public void setDataCadastro(String dataCadastro) {
+        this.dataCadastro = dataCadastro;
     }
 
     public int getIdEndereco() {
@@ -73,9 +85,6 @@ public class Funcionario {
         this.cpf = cpf;
     }
 
-    public void setDataCadastro(String dataCadastro) {
-        this.dataCadastro = dataCadastro;
-    }
 
     public void setDataNascimento(String dataNascimento) {
         this.dataNascimento = dataNascimento;

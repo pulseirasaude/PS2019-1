@@ -18,6 +18,11 @@ import modelo.Endereco;
  */
 public class CadastroEndereco extends javax.swing.JFrame {
     Endereco novo_end = new Endereco();
+    EnderecoBD novoEnd = new EnderecoBD();
+
+    public EnderecoBD getNovoEnd() {
+        return novoEnd;
+    }
 
     public Endereco getNovo_end() {
         return novo_end;
@@ -347,7 +352,7 @@ public class CadastroEndereco extends javax.swing.JFrame {
         novo_end.setNumero(Integer.parseInt(numero.getText()));
         novo_end.setCep(cep.getText());
         
-        EnderecoBD novoEnd = new EnderecoBD();
+        
         try {
             novoEnd.insert(novo_end);
         } catch (SQLException ex) {

@@ -33,10 +33,14 @@ import modelo.Veiculo;
  * @author 20162bsi0325
  */
 public class Home1 extends javax.swing.JFrame {
-    
+    //Cliente
     ArrayList<Cliente> clientes = null;
-    CadastroCliente cliente = new CadastroCliente();
+    CadastroCliente tela_cli = new CadastroCliente();
     ClienteBD clientes_conn = new ClienteBD();
+    //Funcionario
+    FuncionarioBD funBD = new FuncionarioBD();
+    ArrayList<Funcionario> funcionarios = null;
+    CadastroFuncionario tela_func = new CadastroFuncionario();
     /**
      * Creates new form Home
      */
@@ -391,6 +395,11 @@ public class Home1 extends javax.swing.JFrame {
                 "n°", "Nome", "Endereço", "CPF", "Email", "Detalhes"
             }
         ));
+        tabelaFuncionarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaFuncionariosMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(tabelaFuncionarios);
 
         Label_Principal3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -761,8 +770,6 @@ public class Home1 extends javax.swing.JFrame {
     private void funcionariosMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_funcionariosMenuMouseClicked
         // TODO add your handling code here:
         
-        FuncionarioBD funBD = new FuncionarioBD();
-        ArrayList funcionarios = null;
         try {
             funcionarios = funBD.select("");
         } catch (SQLException ex) {
@@ -853,15 +860,14 @@ public class Home1 extends javax.swing.JFrame {
     private void tabelaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaClientesMouseClicked
         // TODO add your handling code here:
             int linha = tabelaClientes.getSelectedRow();
-            System.out.println(linha);
             if(tabelaClientes.getSelectedColumn() == 9){
                 
                 try {
-                    cliente.auxAlteracao((Cliente)this.clientes.get(linha));
+                    tela_cli.auxAlteracao((Cliente)this.clientes.get(linha));
                 } catch (SQLException ex) {
                     Logger.getLogger(Home1.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                cliente.setVisible(true);
+                tela_cli.setVisible(true);
             }
             if(tabelaClientes.getSelectedColumn() == 10){
                 int i = JOptionPane.showConfirmDialog(null,"Deseja excluir?");
@@ -899,6 +905,32 @@ public class Home1 extends javax.swing.JFrame {
         }                                         
 
     }//GEN-LAST:event_pesquisarClienteKeyPressed
+
+    private void tabelaFuncionariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaFuncionariosMouseClicked
+            // TODO add your handling code here:
+            int linha = tabelaFuncionarios.getSelectedRow();
+            if(tabelaFuncionarios.getSelectedColumn() == 8){
+                
+                try {
+                    tela_func.auxAlteracao(this.funcionarios.get(linha));
+                } catch (SQLException ex) {
+                    Logger.getLogger(Home1.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                tela_func.setVisible(true);
+            }
+            if(tabelaClientes.getSelectedColumn() == 9){
+                int i = JOptionPane.showConfirmDialog(null,"Deseja excluir?");
+                if(i == JOptionPane.YES_OPTION) {
+                    try {
+                        clientes_conn.delet(clientes.get(linha).getId());
+                        setTabCli();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Home1.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+               
+            }
+    }//GEN-LAST:event_tabelaFuncionariosMouseClicked
 
     /**
      * @param args the command line arguments
