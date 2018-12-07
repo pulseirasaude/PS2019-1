@@ -22,7 +22,7 @@ Sistema que possibilita o gerenciamento frotas veicular tanto como um sistema co
 - [Diario de Bordo](https://docs.google.com/document/d/1UT7TnA4YTDuy1YdPR4pAkuqkDzXF7gPuQB8Dqummh3g/edit?ts=5b97c602)
 
 ### 6.PROJETO <br>
-- [Prototipos das Telas](https://github.com/pulseirasaude/trab01/projects/1)
+- [Projeto](https://github.com/pulseirasaude/trab01/projects/1)
 
 ### 7.DIAGRAMA DE CLASSE <br>
 ![Alt text](https://github.com/pulseirasaude/POO---CARGA-PESADA/blob/master/Diagrama_de_Classe.png)
