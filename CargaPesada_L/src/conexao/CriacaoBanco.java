@@ -106,6 +106,8 @@ public class CriacaoBanco
                             "  COMPLEMENTO VARCHAR(20),\n" +
                             "  CIDADE VARCHAR(35),\n" +
                             "  ESTADO VARCHAR(20),\n" +
+                            "  BAIRRO VARCHAR(20),\n" +
+                            "  PONTOREFERENCIA VARCHAR(20),\n" +
                             "  PRIMARY KEY (ID)\n" +
                             ");\n" +
                             "\n" +
