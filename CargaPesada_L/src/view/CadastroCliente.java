@@ -19,6 +19,10 @@ import modelo.*;
  */
 public class CadastroCliente extends javax.swing.JFrame {
     CadastroEndereco endereco = new CadastroEndereco();
+    ContatoBD contato = new ContatoBD();
+    ClienteBD clienteBD = new ClienteBD();
+    Cliente novoC = new Cliente();
+    Contato novoCont = new Contato();
     /**
      * Creates new form NewJFrame
      */
@@ -28,26 +32,24 @@ public class CadastroCliente extends javax.swing.JFrame {
     
     public Endereco endCli(Cliente cli) throws SQLException{
         EnderecoClienteBD end = new EnderecoClienteBD();
-        
         return end.select(cli.getId());
     }
     
     public Contato contCli(Cliente cli) throws SQLException{
-        ContatoCliente contato = new ContatoCliente();
-        Contato contatoc = new Contato();        
-        contatoc = contato.select(cli.getId());
-        //System.out.print(contatoc.getEmail());
-        email.setText(contatoc.getEmail());
-        telefone1.setText(contatoc.getTelefone1());
-        telefone2.setText(contatoc.getTelefone2());
-        telefone3.setText(contatoc.getTelefone3());    
+        ContatoCliente contato = new ContatoCliente();    
+        novoCont = contato.select(cli.getId());
+        //System.out.print(novoCont.getEmail());
+        email.setText(novoCont.getEmail());
+        telefone1.setText(novoCont.getTelefone1());
+        telefone2.setText(novoCont.getTelefone2());
+        telefone3.setText(novoCont.getTelefone3());    
+        return novoCont;
         
-        return contatoc; 
+         
     }
     
     public void auxAlteracao(Cliente cliente) throws SQLException{
         nomeCliente.setText(cliente.getNome());
-        
         if(cliente.getTipo_cliente() == "F"){
             tipo_cliente_fisico.setText(cliente.getCpf());
         }
@@ -55,6 +57,7 @@ public class CadastroCliente extends javax.swing.JFrame {
             tipo_cliente.setText(cliente.getCnpj());
         }
         contCli(cliente);
+        Alteracao.setEnabled(true);
         endereco.auxAlteracao(endCli(cliente));        
         cadastro.setEnabled(false);
         
@@ -198,6 +201,7 @@ public class CadastroCliente extends javax.swing.JFrame {
         });
 
         Alteracao.setText("ALTERAR OS DADOS");
+        Alteracao.setEnabled(false);
         Alteracao.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 AlteracaoMouseClicked(evt);
@@ -356,11 +360,8 @@ public class CadastroCliente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_nomeClienteActionPerformed
 
-    private void cadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cadastroMouseClicked
-        Cliente novoC = new Cliente();
-        // novo.setData_vencimento(Data_Vencimento.getText());
+    public void setCli(){
         novoC.setNome(nomeCliente.getText());
-        
         if((tipo_cliente_fisico.getText().length()) != 0){
             novoC.setTipoCliente("F");
             novoC.setCpf((tipo_cliente_fisico.getText()));            
@@ -369,31 +370,37 @@ public class CadastroCliente extends javax.swing.JFrame {
             novoC.setTipoCliente("J");
         }
         novoC.setData_atual();
-        novoC.setId_endereco(endereco.getNovo_end().getId());
+        novoC.setId_endereco(endereco.getNovo_end().getId());    
+        novoC.setIdContato(novoCont.getId_contato());
         
-        Contato novoCont = new Contato();
+        try {
+            clienteBD.insert(novoC);
+            JOptionPane.showMessageDialog(null,"CLIENTE CADASTRADO!");
+            dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(CadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void setCont(){
+         
         novoCont.setEmail(email.getText());
         novoCont.setTelefone1(telefone1.getText());
         novoCont.setTelefone2(telefone2.getText());
         novoCont.setTelefone3(telefone3.getText());     
- 
-        ContatoBD contato = new ContatoBD();
         try {
             contato.insert(novoCont);
         } catch (SQLException ex) { 
            Logger.getLogger(CadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
        
-        novoC.setIdContato(novoCont.getId_contato());
-        ClienteBD clienteBD = new ClienteBD();
-        try {
-            clienteBD.insert(novoC);
-            JOptionPane.showMessageDialog(null,"CLIENTE CADASTRADO!");
-        } catch (SQLException ex) {
-            Logger.getLogger(CadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        dispose();        // TODO add your handling code here:
+    }
+    
+    private void cadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cadastroMouseClicked
+        //novo.setData_vencimento(Data_Vencimento.getText());
+        setCont();
+        setCli();
+        // TODO add your handling code here:
     }//GEN-LAST:event_cadastroMouseClicked
 
     private void cadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastroActionPerformed
@@ -425,7 +432,16 @@ public class CadastroCliente extends javax.swing.JFrame {
 
     private void AlteracaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AlteracaoMouseClicked
         // TODO add your handling code here:
+        setCont();
+        setCli();
+        try {
+            clienteBD.update(novoC);
             
+            JOptionPane.showMessageDialog(null,"CLIENTE ALTERADO!");
+            dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(CadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_AlteracaoMouseClicked
 
     private void AlteracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlteracaoActionPerformed

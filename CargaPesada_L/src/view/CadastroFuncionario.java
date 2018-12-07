@@ -23,9 +23,12 @@ import modelo.Contato;
  */
 public class CadastroFuncionario extends javax.swing.JFrame {
     
-    
+    Funcionario novoF = new Funcionario();
     CadastroEndereco endereco11 = new CadastroEndereco();
-
+    Contato novoCtt = new Contato();
+    ContatoBD contato1 = new ContatoBD();
+    FuncionarioBD funcionarioBD = new FuncionarioBD();
+        
     /**
      * Creates new form CadastroFuncionario
      */
@@ -37,26 +40,30 @@ public class CadastroFuncionario extends javax.swing.JFrame {
         
         return end.select(funciona.getIdFuncionario());
     }
-    public Contato contFuncio(Funcionario funcio) throws SQLException{
-        ContatoFuncionario contato = new ContatoFuncionario();
-        Contato contatoc = new Contato();        
-        contatoc = contato.select(funcio.getIdFuncionario());
-        //System.out.print(contatoc.getEmail());
-        email.setText(contatoc.getEmail());
-        telefone1.setText(contatoc.getTelefone1());
-        telefone2.setText(contatoc.getTelefone2());
-        telefone3.setText(contatoc.getTelefone3());    
+    public void contFuncio(Funcionario funcio) throws SQLException{
+        ContatoFuncionario contato = new ContatoFuncionario();        
+        novoCtt = contato.select(funcio.getIdFuncionario());
+        //System.out.print(novoCtt.getEmail());
         
-        return contatoc; 
+        email.setText(novoCtt.getEmail());
+        telefone1.setText(novoCtt.getTelefone1());
+        telefone2.setText(novoCtt.getTelefone2());
+        telefone3.setText(novoCtt.getTelefone3());    
+        
+        //return novoCtt; 
     }
     
     
      public void auxAlteracao(Funcionario funcionario) throws SQLException{
+        
         nome.setText(funcionario.getNome());
         cpf.setText(funcionario.getCpf());
         cargo.setText(funcionario.getCargo());
-        contFuncio(funcionario);
+        sexo.setToolTipText(funcionario.getSexo());
+        salario.setText(Float.toString(funcionario.getSalario()));
+        data_nasc.setText(funcionario.getDataNascimento());
         endereco11.auxAlteracao(endFuncio(funcionario));        
+        contFuncio(funcionario);
         cadastro.setEnabled(false);
         
     }
@@ -103,6 +110,7 @@ public class CadastroFuncionario extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         data_nasc = new javax.swing.JFormattedTextField();
         sexo = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
 
         jLabel14.setText("CPF");
 
@@ -253,6 +261,18 @@ public class CadastroFuncionario extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Alteracao");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -262,10 +282,48 @@ public class CadastroFuncionario extends javax.swing.JFrame {
                 .addComponent(cadastro)
                 .addGap(18, 18, 18)
                 .addComponent(voltar)
-                .addGap(120, 120, 120))
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addGap(29, 29, 29))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel19)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(telefone2, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel13)
+                            .addComponent(jLabel18))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(sexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(cargo, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel4))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(salario, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel6)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(data_nasc))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(telefone1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(jLabel3)
@@ -274,52 +332,11 @@ public class CadastroFuncionario extends javax.swing.JFrame {
                             .addGap(6, 6, 6))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                             .addGap(10, 10, 10)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(cadastro_endereco)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel22)
-                                    .addGap(40, 40, 40)
-                                    .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel19)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(telefone2, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel13)
-                                    .addComponent(jLabel18))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(sexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
-                                .addComponent(cargo, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(20, 20, 20)
-                                .addComponent(jLabel4))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(salario, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel6)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(data_nasc))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel2)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(telefone1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                            .addComponent(jLabel22)
+                            .addGap(40, 40, 40)
+                            .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(cadastro_endereco))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -370,7 +387,8 @@ public class CadastroFuncionario extends javax.swing.JFrame {
                 .addGap(44, 44, 44)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cadastro)
-                    .addComponent(voltar))
+                    .addComponent(voltar)
+                    .addComponent(jButton1))
                 .addGap(19, 19, 19))
         );
 
@@ -444,10 +462,21 @@ public class CadastroFuncionario extends javax.swing.JFrame {
         
     }//GEN-LAST:event_cadastro_enderecoMouseClicked
 
-    private void cadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cadastroMouseClicked
-        // TODO add your handling code here:
-         // novo.setData_vencimento(Data_Vencimento.getText());
-        Funcionario novoF = new Funcionario();
+    public void setCont(){
+                        
+        novoCtt.setTelefone1(telefone1.getText());
+        novoCtt.setTelefone2(telefone2.getText());
+        novoCtt.setTelefone3(telefone3.getText());
+        novoCtt.setEmail(email.getText());
+        
+        try {
+            contato1.insert(novoCtt);
+        } catch (SQLException ex) { 
+           Logger.getLogger(CadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void setCli(){
         
         novoF.setNome(nome.getText());
         novoF.setCpf(cpf.getText());
@@ -456,42 +485,24 @@ public class CadastroFuncionario extends javax.swing.JFrame {
         novoF.setSalario(Integer.parseInt(salario.getText()));
         novoF.setDataCadastro();
         novoF.setSexo(sexo.getSelectedItem().toString());
-                        
-        Contato novoCtt = new Contato();
-        novoCtt.setTelefone1(telefone1.getText());
-        novoCtt.setTelefone2(telefone2.getText());
-        novoCtt.setTelefone3(telefone3.getText());
-        novoCtt.setEmail(email.getText());
-        ContatoBD contato1 = new ContatoBD();
-        try {
-            contato1.insert(novoCtt);
-        } catch (SQLException ex) { 
-           Logger.getLogger(CadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
-        }
-       
         novoF.setIdContato(novoCtt.getId_contato());
-        
         novoF.setIdEndereco(endereco11.getNovo_end().getId());
         
-        FuncionarioBD funcionarioBD = new FuncionarioBD();
+        
         try {
             funcionarioBD.insert(novoF);
             JOptionPane.showMessageDialog(null,"FUNCIONARIO CADASTRADO!");
             dispose();
-        } catch (SQLException ex) {
-            try {
-                contato1.delet(novoCtt.getId_contato());
-            } catch (SQLException ex1) {
-                Logger.getLogger(CadastroFuncionario.class.getName()).log(Level.SEVERE, null, ex1);
-            }
-            
+        } catch (SQLException ex) {            
             Logger.getLogger(CadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
-        }  
-        
-        
-        
-        
-        
+        }
+    }
+    private void cadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cadastroMouseClicked
+        // TODO add your handling code here:
+         // novo.setData_vencimento(Data_Vencimento.getText());
+        setCont();
+        setCli();
+       
     }//GEN-LAST:event_cadastroMouseClicked
 
     private void salarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salarioActionPerformed
@@ -501,6 +512,16 @@ public class CadastroFuncionario extends javax.swing.JFrame {
     private void sexoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sexoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_sexoActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        setCont();
+        setCli();
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -544,6 +565,7 @@ public class CadastroFuncionario extends javax.swing.JFrame {
     private javax.swing.JTextField cpf;
     private javax.swing.JFormattedTextField data_nasc;
     private javax.swing.JTextField email;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;

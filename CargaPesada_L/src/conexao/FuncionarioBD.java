@@ -65,11 +65,13 @@ public class FuncionarioBD implements InterfaceBD{
         rs = stmt.executeQuery("INSERT INTO FUNCIONARIO(NOME, CPF, CARGO, SALARIO, SEXO, DATA_CADASTRO, DATA_NASCIMENTO) values('"
                 + novo.getNome()+"','" + novo.getCpf()+ "','" + novo.getCargo()+ "',"
                 + novo.getSalario()+ ",'" + novo.getSexo() +"','" + novo.getDataCadastro() +"','"+ novo.getDataNascimento() +"') returning id");
-       
-        stmt.executeQuery("INSERT INTO ENDERECO_CLIENTE(ID_CLIENTE, ID_ENDERECO) values('"
+       if(rs.next()){
+           novo.setIdFuncionario(rs.getInt("id"));
+       }
+        stmt.executeQuery("INSERT INTO ENDERECO_FUNCIONARIO(ID_FUNCIONARIO, ID_ENDERECO) values('"
                 + ""+ novo.getIdFuncionario() +"','" + novo.getIdEndereco()+"') returning id");
         
-        stmt.executeQuery("INSERT INTO CONTATO_CLIENTE(ID_CONTATO, ID_CLIENTE) values('"
+        stmt.executeQuery("INSERT INTO CONTATO_FUNCIONARIO(ID_CONTATO, ID_FUNCIONARIO) values('"
                 + ""+ novo.getIdContato() +"','" + novo.getIdFuncionario()+"') returning id");
         
         

@@ -30,6 +30,7 @@ public class CadastroEndereco extends javax.swing.JFrame {
     
   
     public void auxAlteracao(Endereco end){
+        this.novo_end = end;
         endereco.setText(end.getNome());
         logradouro.setText(end.getLogradouro());
         cidade.setText(end.getCidade());
@@ -38,8 +39,27 @@ public class CadastroEndereco extends javax.swing.JFrame {
         pontoReferencia.setText(end.getReferencia());
         cep.setText(end.getCep());
         estado.setActionCommand(end.getEstado());
-        
+        Alteracao.setEnabled(true);
         cadastro.setEnabled(false);
+    }
+    public void setEnd(){
+        novo_end.setNome(endereco.getText());
+        novo_end.setEstado(estado.getSelectedItem().toString());
+        novo_end.setCidade(cidade.getText());
+        novo_end.setBairro(bairro.getText());
+        novo_end.setReferencia(pontoReferencia.getText());
+        novo_end.setLogradouro(logradouro.getText());
+        novo_end.setComplemento(pontoReferencia.getText());
+        novo_end.setNumero(Integer.parseInt(numero.getText()));
+        novo_end.setCep(cep.getText());
+        
+        
+        try {
+            novoEnd.insert(novo_end);
+            dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(CadastroEndereco.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     /** Creates new form CadastroEndereco */
@@ -190,6 +210,7 @@ public class CadastroEndereco extends javax.swing.JFrame {
         });
 
         Alteracao.setText("ALTERAR OS DADOS");
+        Alteracao.setEnabled(false);
         Alteracao.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 AlteracaoMouseClicked(evt);
@@ -340,27 +361,10 @@ public class CadastroEndereco extends javax.swing.JFrame {
     private void enderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enderecoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_enderecoActionPerformed
-
+    
     private void cadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cadastroMouseClicked
-        novo_end.setNome(endereco.getText());
-        novo_end.setEstado(estado.getSelectedItem().toString());
-        novo_end.setCidade(cidade.getText());
-        novo_end.setBairro(bairro.getText());
-        novo_end.setReferencia(pontoReferencia.getText());
-        novo_end.setLogradouro(logradouro.getText());
-        novo_end.setComplemento(pontoReferencia.getText());
-        novo_end.setNumero(Integer.parseInt(numero.getText()));
-        novo_end.setCep(cep.getText());
-        
-        
-        try {
-            novoEnd.insert(novo_end);
-        } catch (SQLException ex) {
-            Logger.getLogger(CadastroEndereco.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        dispose();        // TODO add your handling code here:
-        
+        setEnd();
+         // TODO add your handling code here:
         // FALTA VINCULAR ENDEREÇO AO CLIENTE
         // FALTA VINCULAR ENDEREÇO AO CLIENTE
         // FALTA VINCULAR ENDEREÇO AO CLIENTE
@@ -389,7 +393,7 @@ public class CadastroEndereco extends javax.swing.JFrame {
 
     private void AlteracaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AlteracaoMouseClicked
         // TODO add your handling code here:
-
+        setEnd();
     }//GEN-LAST:event_AlteracaoMouseClicked
 
     private void AlteracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlteracaoActionPerformed

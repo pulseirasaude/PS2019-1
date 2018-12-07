@@ -20,7 +20,6 @@ public class ContatoCliente {
     public Contato select(int idCli) throws SQLException{
         Connection c;
         Contato contato = new Contato();
-        Endereco endereco = new Endereco();
         Statement stmt;
         c = ConexaoBD.getInstance();
         stmt = c.createStatement();
