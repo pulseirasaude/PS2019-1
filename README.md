@@ -6,7 +6,7 @@ Integrantes do grupo<br>
 Wallace Silva de Paula: wallacedpaula97@gmail.com<br>
 Leonardo Sena: leosena1995@gmail.com<br>
 Bruno Moreto: bruninhomoreto@gmail.com<br>
-Lorran Gabriel: lorrangabriel20@gmail.com<br>
+
 
 ### 2.MINI-MUNDO Novo<br>
 
