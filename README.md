@@ -16,7 +16,7 @@ Sistema que possibilita o gerenciamento frotas veicular tanto como um sistema co
 - [Prototipos das Telas](https://github.com/pulseirasaude/POO---CARGA-PESADA/blob/master/Prototipo.pdf)
 
 ### 4.PMC<br>
-- [PMC](https://github.com/pulseirasaude/POO---CARGA-PESADA/blob/master/Project%20Canvas%20-%20Carga%20Pesada.pdf)
+- [PMC](https://github.com/pulseirasaude/poo-cargapesada-2/blob/master/CANVAS%202.0.JPG)
 
 ### 5.DIARIO DE BORDO<br>
 - [Diario de Bordo](https://docs.google.com/document/d/1UT7TnA4YTDuy1YdPR4pAkuqkDzXF7gPuQB8Dqummh3g/edit?ts=5b97c602)
