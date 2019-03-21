@@ -4,9 +4,8 @@
 ### 1. COMPONENTES<br>
 Integrantes do grupo<br>
 Wallace Silva de Paula: wallacedpaula97@gmail.com<br>
-Leonardo Sena: leosena1995@gmail.com<br>
 Bruno Moreto: bruninhomoreto@gmail.com<br>
-Leonardo Arpini: <br>
+Leonardo Arpini: leonardoarpini@gmail.com<br>
 
 
 ### 2.MINI-MUNDO Novo<br>
@@ -20,7 +19,7 @@ Sistema que possibilita o gerenciamento frotas veicular tanto como um sistema co
 - [PMC](https://github.com/pulseirasaude/poo-cargapesada-2/blob/master/CANVAS%202.0.JPG)
 
 ### 5.DIARIO DE BORDO<br>
-- [Diario de Bordo](https://docs.google.com/document/d/17N9o4YjUet3ZSjxGLvXArDWIxrIqHOPKwBhOnJtln4E/edit?usp=sharing)
+- [Diario de Bordo](https://docs.google.com/document/d/1UT7TnA4YTDuy1YdPR4pAkuqkDzXF7gPuQB8Dqummh3g/edit?ts=5b97c602)
 
 ### 6.PROJETO <br>
 - [Projeto](https://github.com/pulseirasaude/trab01/projects/1)
