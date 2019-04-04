@@ -13,8 +13,8 @@ public class Servico
 {
     private int idServico;
     private String status;
-    private int idDestino;
-    private int idOrigem;
+    private Endereco EnderecoDestino;
+    private Endereco idEnderecoOrigem;
     private float valorContrato;
     private String dataInicio;
     private String dataFim;
@@ -79,13 +79,13 @@ public class Servico
     }
 
 
-    public int getIdDestino() {
-        return this.idDestino;
+    public Endereco idEnderecoDestino() {
+        return this.EnderecoDestino;
     }
 
 
-    public int getIdOrigem() {
-        return this.idOrigem;
+    public Endereco getEnderecoOrigem() {
+        return this.idEnderecoOrigem;
     }
 
     public float getValorContrato() {
@@ -120,12 +120,12 @@ public class Servico
         this.status = status;
     }
 
-    public void setIdDestino(int idDestino) {
-        this.idDestino = idDestino;
+    public void setEnderecoDestino(Endereco idDestino) {
+        this.EnderecoDestino = idDestino;
     }
 
-    public void setIdOrigem(int idOrigem) {
-        this.idOrigem = idOrigem;
+    public void setEnderecoOrigem(Endereco idOrigem) {
+        this.idEnderecoOrigem = idOrigem;
     }
 
     public void setValorContrato(float valorContrato) {

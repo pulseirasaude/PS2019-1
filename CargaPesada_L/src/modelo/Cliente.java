@@ -14,21 +14,18 @@ import java.util.Date;
  *
  * @author 20181bsi0172
  */
-public class Cliente
-    {
+public class Cliente{
         private int id;
         private String nome;
-
         private String cnpj;
         private String cpf;
         private int id_endereco;
         private String data_atual;
         private String tipo_cliente;
-
         private String email;
         private int idContato;
 
-    public String getCnpj() {
+    public String getCnpj(){
         return this.cnpj;
     }
     
@@ -48,9 +45,7 @@ public class Cliente
     public int getId() {
         return this.id;
     }
-
-
-
+    
     public void setData_atual() {
         Date dataHoraAtual = new Date();
         this.data_atual = new SimpleDateFormat("dd/MM/yyyy").format(dataHoraAtual);    
@@ -68,7 +63,6 @@ public class Cliente
         return this.nome;
     }
 
-
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -82,19 +76,14 @@ public class Cliente
         this.cnpj = cnpj;
     }
 
-
     public String getCpf() {
         return cpf;
     }
 
     public void setCpf(String cpf) {
-
-    
-
         this.cpf = cpf;
     }
-
-
+    
     public void setEmail(String email) {
         this.email = email;
     }

@@ -30,7 +30,7 @@ public class CadastroServico extends javax.swing.JFrame {
     CadastroEndereco endereco2 = new CadastroEndereco();
     
     Servico serv = new Servico();
-    TABELA_DIALOGO dialog = new TABELA_DIALOGO(new javax.swing.JFrame(), true);
+    TABELA_DIALOGO_SERVICO dialog = new TABELA_DIALOGO_SERVICO(new javax.swing.JFrame(), true);
     public CadastroServico() {
         initComponents();
     }
@@ -508,13 +508,13 @@ public class CadastroServico extends javax.swing.JFrame {
 
     private void cadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cadastrarMouseClicked
        
-        if(serv.getIdOrigem() == 0)
+        if(serv.getEnderecoOrigem() == 0)
         {
-           serv.setIdOrigem(endereco1.getNovo_end().getId());
+           serv.setEnderecoOrigem(endereco1.getNovo_end());
         }
-         if(serv.getIdDestino() == 0)
+         if(serv.idEnderecoDestino() == 0)
         {
-           serv.setIdDestino(endereco2.getNovo_end().getId());
+           serv.setEnderecoDestino(endereco2.getNovo_end());
         }
         serv.setDataFim(dataFim.getText());
         serv.setDataInicio(dataInicio.getText());
@@ -632,10 +632,10 @@ public class CadastroServico extends javax.swing.JFrame {
              }
             
             
-            dialog.dadostabelE(endLista);
+            dialog.setListaEndereco(endLista);
             dialog.setVisible(true);            
-            endOrigem.setText(dialog.getNome());
-            serv.setIdOrigem(dialog.getId());
+            endOrigem.setText(dialog.getEndereco().getNome());
+            serv.setEnderecoOrigem(dialog.getEndereco());
         }
     }//GEN-LAST:event_endOrigemKeyPressed
 
@@ -660,7 +660,7 @@ public class CadastroServico extends javax.swing.JFrame {
             dialog.dadostabelE(endLista);
             dialog.setVisible(true);
             endDestino.setText(dialog.getNome());
-            serv.setIdDestino(dialog.getId());
+            serv.setEnderecoDestino(dialog.getId());
         }
     }//GEN-LAST:event_endDestinoKeyPressed
 

@@ -16,13 +16,30 @@ import modelo.Veiculo;
  *
  * @author walla
  */
-public class TABELA_DIALOGO extends javax.swing.JDialog {
+public class TABELA_DIALOGO_SERVICO extends javax.swing.JDialog {
 
     /**
      * Creates new form TABELA_DIALOGO
      */
     DefaultTableModel modelo = new DefaultTableModel();
     List<Endereco> ListaEndereco;
+
+    public List<Endereco> getListaEndereco() {
+        return ListaEndereco;
+    }
+
+    public void setListaEndereco(List<Endereco> ListaEndereco) {
+        this.ListaEndereco = ListaEndereco;
+    }
+    Endereco endereco = new Endereco();
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
 
     int id = 0;
     String nome = "";
@@ -115,8 +132,9 @@ public class TABELA_DIALOGO extends javax.swing.JDialog {
             }
             jTable1.setModel(modelo);
     }
-    public TABELA_DIALOGO(java.awt.Frame parent, boolean modal) {
+    public TABELA_DIALOGO_SERVICO(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        
         initComponents();
     }
 
@@ -184,10 +202,8 @@ public class TABELA_DIALOGO extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        int coluna = jTable1.getSelectedColumn();
         int linha = jTable1.getSelectedRow();
-        id = Integer.parseInt((String) jTable1.getValueAt(linha,coluna));
-        nome = (String) jTable1.getValueAt(linha,coluna + 1);
+        setEndereco(ListaEndereco.get(linha));
         dispose();
     }//GEN-LAST:event_jTable1MouseClicked
 
@@ -213,21 +229,23 @@ public class TABELA_DIALOGO extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TABELA_DIALOGO.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TABELA_DIALOGO_SERVICO.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TABELA_DIALOGO.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TABELA_DIALOGO_SERVICO.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TABELA_DIALOGO.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TABELA_DIALOGO_SERVICO.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TABELA_DIALOGO.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TABELA_DIALOGO_SERVICO.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                TABELA_DIALOGO dialog = new TABELA_DIALOGO(new javax.swing.JFrame(), true);
+                TABELA_DIALOGO_SERVICO dialog = new TABELA_DIALOGO_SERVICO(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
