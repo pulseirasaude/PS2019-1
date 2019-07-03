@@ -48,9 +48,9 @@ public abstract class VerificaCargaTemplate {
         //Date dataFormatada = formato.parse(data);
         if (data.after(dataFim)){
             JOptionPane.showMessageDialog(null,"Entrega em atraso");
-            resultado++;
         }else{
             JOptionPane.showMessageDialog(null,"Entrega dentro do prazo");
+            resultado++;
         }     
     }
 
