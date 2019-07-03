@@ -97,7 +97,7 @@ public class TABELA_DIALOGO extends javax.swing.JDialog {
         tabela.setModel(modelo);
     }
         
-       public void dadostabelE(){
+    public void dadostabelE(){
             DefaultTableModel modelo = new DefaultTableModel();
             modelo.addColumn("Codigo");
             modelo.addColumn("Nome");

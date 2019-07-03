@@ -83,7 +83,9 @@ public class ClienteBD implements InterfaceBD{
         Statement stmt;
         c = ConexaoBD.getInstance();
         stmt = c.createStatement();
-        String sql = "DELETE from CLIENTE where ID=" + id + ";";
+        
+        String sql = "DELETE from endereco_cliente where ID_CLIENTE = "+ id  
+                + ";DELETE from CLIENTE where ID=" + id + ";";
         
         stmt.executeUpdate(sql);
         stmt.close();

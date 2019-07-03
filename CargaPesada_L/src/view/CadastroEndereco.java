@@ -10,6 +10,7 @@ import conexao.EnderecoBD;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import modelo.Endereco;
 
 /**
@@ -28,7 +29,9 @@ public class CadastroEndereco extends javax.swing.JFrame {
         return novo_end;
     }
     
-  
+    public void botaoCAD(){
+        cadastro.setEnabled(false);
+    }
     public void auxAlteracao(Endereco end){
         this.novo_end = end;
         endereco.setText(end.getNome());
@@ -40,9 +43,9 @@ public class CadastroEndereco extends javax.swing.JFrame {
         cep.setText(end.getCep());
         estado.setActionCommand(end.getEstado());
         Alteracao.setEnabled(true);
-        cadastro.setEnabled(false);
+        botaoCAD();
     }
-    public void setEnd(){
+    public int setEnd(){
         novo_end.setNome(endereco.getText());
         novo_end.setEstado(estado.getSelectedItem().toString());
         novo_end.setCidade(cidade.getText());
@@ -50,8 +53,15 @@ public class CadastroEndereco extends javax.swing.JFrame {
         novo_end.setReferencia(pontoReferencia.getText());
         novo_end.setLogradouro(logradouro.getText());
         novo_end.setComplemento(pontoReferencia.getText());
-        novo_end.setNumero(Integer.parseInt(numero.getText()));
+        
         novo_end.setCep(cep.getText());
+        try{
+            novo_end.setNumero(Integer.parseInt(numero.getText()));
+        }
+        catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null,"Endereco nao cadastrado! Por favor revise os dados!\nSe o erro continuar entre em contato com o suporte do sistema");
+            return 0;
+        }
         
         
         try {
@@ -60,6 +70,8 @@ public class CadastroEndereco extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(CadastroEndereco.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        return 1;
     }
     
     /** Creates new form CadastroEndereco */
@@ -363,7 +375,7 @@ public class CadastroEndereco extends javax.swing.JFrame {
     }//GEN-LAST:event_enderecoActionPerformed
     
     private void cadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cadastroMouseClicked
-        setEnd();
+            setEnd();
          // TODO add your handling code here:
         // FALTA VINCULAR ENDEREÇO AO CLIENTE
         // FALTA VINCULAR ENDEREÇO AO CLIENTE
@@ -376,7 +388,9 @@ public class CadastroEndereco extends javax.swing.JFrame {
     }//GEN-LAST:event_cadastroActionPerformed
 
     private void voltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_voltarMouseClicked
-        dispose();        // TODO add your handling code here:
+
+                    dispose();
+                // TODO add your handling code here:
     }//GEN-LAST:event_voltarMouseClicked
 
     private void voltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarActionPerformed
@@ -393,7 +407,7 @@ public class CadastroEndereco extends javax.swing.JFrame {
 
     private void AlteracaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AlteracaoMouseClicked
         // TODO add your handling code here:
-        setEnd();
+            setEnd();
     }//GEN-LAST:event_AlteracaoMouseClicked
 
     private void AlteracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlteracaoActionPerformed

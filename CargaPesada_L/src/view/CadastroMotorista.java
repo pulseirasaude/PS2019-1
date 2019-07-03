@@ -6,11 +6,13 @@
 
 package view;
 
+import conexao.AplicacoesBD;
 import conexao.MotoristaBD;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import modelo.Funcionario;
 import modelo.Motorista;
 
 /**
@@ -19,8 +21,9 @@ import modelo.Motorista;
  */
 public class CadastroMotorista extends javax.swing.JFrame {
     
-
-    
+    TABELA_DIALOGO_SERVICO dialog = new TABELA_DIALOGO_SERVICO(new javax.swing.JFrame(), true);
+    AplicacoesBD aplicacao = new AplicacoesBD();
+    Funcionario funcionario;
     
     /** Creates new form CadastroMotorista */
     public CadastroMotorista() {
@@ -49,7 +52,18 @@ public class CadastroMotorista extends javax.swing.JFrame {
         voltar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        nome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                nomeMouseClicked(evt);
+            }
+        });
+        nome.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                nomeKeyPressed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel5.setText("Categoria");
@@ -77,6 +91,11 @@ public class CadastroMotorista extends javax.swing.JFrame {
         });
 
         voltar.setText("Voltar");
+        voltar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                voltarMouseClicked(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Cadastro Motorista");
@@ -172,6 +191,7 @@ public class CadastroMotorista extends javax.swing.JFrame {
         novoMoto.setCnh(cnh.getText());
         novoMoto.setCategoriaCnh(categoria.getText());
         novoMoto.setDataVencimento(datadeVencimento.getText());
+        novoMoto.setFuncionario(funcionario);
         
         MotoristaBD motoBD = new MotoristaBD();
         try {
@@ -183,6 +203,27 @@ public class CadastroMotorista extends javax.swing.JFrame {
         
         dispose();
     }//GEN-LAST:event_cadastrarMouseClicked
+
+    private void voltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_voltarMouseClicked
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_voltarMouseClicked
+
+    private void nomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nomeMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_nomeMouseClicked
+
+    private void nomeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nomeKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == evt.VK_ENTER){
+            dialog.setListaFuncionario(aplicacao.ProcuraFuncionario(nome.getText())); 
+            dialog.dadostabelF();
+            dialog.setVisible(true);
+            nome.setText(dialog.getFuncionario().getNome());
+            this.funcionario = dialog.getFuncionario();
+        }
+    }//GEN-LAST:event_nomeKeyPressed
 
     /**
      * @param args the command line arguments

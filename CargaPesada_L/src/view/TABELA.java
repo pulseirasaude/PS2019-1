@@ -18,6 +18,7 @@ import modelo.Funcionario;
 import modelo.Motorista;
 import modelo.Servico;
 import modelo.Veiculo;
+import relatorios.Resultado;
 
 /**
  *
@@ -38,6 +39,34 @@ public class TABELA extends javax.swing.JFrame {
         return nome;
     }
     
+    public void dadosTabelaRelatorios(List<Resultado> resultado, JTable tabela){
+        DefaultTableModel modelo = new DefaultTableModel();
+        
+        if (tabela == null)
+            tabela = jTable1;
+        
+        modelo.addColumn("ID");
+        modelo.addColumn("Nome");
+        modelo.addColumn("Valor");
+        
+        
+                       
+        Resultado gen;
+        if(resultado.isEmpty()){
+            modelo.addRow(new String[]{"NADA","NADA"});
+            
+        }else{
+            for(int i = 0; i < resultado.size(); i++){
+                gen = resultado.get(i);
+                modelo. addRow(new String[]{
+                                    Integer.toString(gen.getCodigo()),
+                                    gen.getNome(),
+                                    Float.toString(gen.getValor())});
+            }
+        }
+        tabela.setModel(modelo);
+    }
+    
     public void dadosTabelaServicos(List<Servico> servicos, JTable tabela) {
         DefaultTableModel modelo = new DefaultTableModel();
         
@@ -51,10 +80,7 @@ public class TABELA extends javax.swing.JFrame {
         modelo.addColumn("Data Fim");
         modelo.addColumn("Tipo");      
         modelo.addColumn("Alterar");
-       
-
-
-                
+                       
         Servico gen;
         if(servicos.isEmpty()){
             modelo.addRow(new String[]{"NADA","NADA"});
@@ -73,7 +99,6 @@ public class TABELA extends javax.swing.JFrame {
                                 ,"X"});
             }
         }
-        
         tabela.setModel(modelo);
     }
     
@@ -87,7 +112,7 @@ public class TABELA extends javax.swing.JFrame {
         modelo.addColumn("CNH");
         modelo.addColumn("Data Vencimento");
         modelo.addColumn("Categoria CNH");
-        modelo.addColumn("ID Funcionario");
+        //modelo.addColumn("ID Funcionario");
 
                 
         Motorista gen ;
@@ -100,8 +125,8 @@ public class TABELA extends javax.swing.JFrame {
                 modelo. addRow(new String[]{Integer.toString(gen.getIdMotorista()), 
                                 gen.getCnh(),
                                 gen.getDataVencimento(),
-                                gen.getCategoriaCnh(),
-                                Integer.toString(gen.getIdFuncionario())
+                                gen.getCategoriaCnh()
+                                //,Integer.toString(gen.getIdFuncionario())
                                 });
             }
         }

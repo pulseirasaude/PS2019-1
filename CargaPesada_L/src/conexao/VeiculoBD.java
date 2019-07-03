@@ -81,7 +81,7 @@ public class VeiculoBD implements InterfaceBD{
                 ","+ novo.getIdFinanciamento()+
                 ","+ novo.getIdSeguro()+
                 ","+ novo.getIdModelo()+
-                ",NULL) RETURNING id");
+                ","+ novo.getIdMotorista() +") RETURNING id");
         
         stmt.close();
         c.close();  

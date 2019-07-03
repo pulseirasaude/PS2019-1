@@ -5,11 +5,13 @@
  */
 package view;
 
+import static java.lang.System.out;
 import java.util.List;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelo.Cliente;
 import modelo.Endereco;
+import modelo.Funcionario;
 import modelo.Veiculo;
 
 /**
@@ -22,43 +24,55 @@ public class TABELA_DIALOGO_SERVICO extends javax.swing.JDialog {
      * Creates new form TABELA_DIALOGO
      */
     DefaultTableModel modelo = new DefaultTableModel();
-    List<Endereco> ListaEndereco;
-
-    public List<Endereco> getListaEndereco() {
-        return ListaEndereco;
-    }
-
+    private List<Endereco> ListaEndereco = null;
+    private Endereco endereco = null;
+    private List<Cliente> ListaClientes = null;
+    private Cliente cliente = null;
+    private List<Funcionario> ListaFuncionario = null;
+    private Funcionario funcionario = null;
+    private List<Veiculo> ListaVeiculo = null;
+    private Veiculo veiculo = null;
+    private int tipo;
+    
     public void setListaEndereco(List<Endereco> ListaEndereco) {
         this.ListaEndereco = ListaEndereco;
     }
-    Endereco endereco = new Endereco();
-
     public Endereco getEndereco() {
         return endereco;
     }
 
+    public void setListaClientes(List<Cliente> ListaClientes) {
+        this.ListaClientes = ListaClientes;
+    }
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setListaVeiculo(List<Veiculo> ListaVeiculo) {
+        this.ListaVeiculo = ListaVeiculo;
+    }
+    public Veiculo getVeiculo() {
+        return veiculo;
+    }
+
+    public void setListaFuncionario(List<Funcionario> ListaFuncionario) {
+        this.ListaFuncionario = ListaFuncionario;
+    }
+    public Funcionario getFuncionario() {
+        return funcionario;
+    }
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
-
-    int id = 0;
-    String nome = "";
-
     
-
-    public int getId() {
-        return id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
     
-    public void dadostabelV(List<Veiculo> veiculo, JTable tabela){
+    
+    
+   
+    
+    public void dadostabelV(){
         DefaultTableModel modelo = new DefaultTableModel();
         
-        if (tabela == null)
-            tabela = jTable1;
         modelo.addColumn("Codigo");
         modelo.addColumn("Nome");
         modelo.addColumn("Chassi");
@@ -69,12 +83,12 @@ public class TABELA_DIALOGO_SERVICO extends javax.swing.JDialog {
         modelo.addColumn("Categoria");
                 
         Veiculo gen ;
-        if(veiculo.isEmpty()){
+        if(ListaVeiculo.isEmpty()){
             modelo.addRow(new String[]{"NADA","NADA"});
             
         }else{
-            for(int i = 0; i< veiculo.size(); i++){
-                gen = veiculo.get(i);
+            for(int i = 0; i< ListaVeiculo.size(); i++){
+                gen = ListaVeiculo.get(i);
                 modelo. addRow(new String[]{Integer.toString(gen.getId()), 
                                 (gen.getNome()),
                                 (gen.getChassi()),
@@ -87,34 +101,54 @@ public class TABELA_DIALOGO_SERVICO extends javax.swing.JDialog {
             }
         }
         
-        tabela.setModel(modelo);
+        jTable1.setModel(modelo);
+        this.tipo = 2;
     }
+    
     /**
      *
      * @param veiculo
      */
-    public void dadostabelC(List<Cliente> Clientes, JTable tabela){
+    
+    public void dadostabelC(){
         DefaultTableModel modelo = new DefaultTableModel();
-        if (tabela == null)
-            tabela = jTable1;
-        
         modelo.addColumn("Codigo");
         modelo.addColumn("Nome");
         Cliente gen ;
-        if(Clientes.isEmpty()){
+        if(ListaClientes.isEmpty()){
             modelo.addRow(new String[]{"NADA","NADA"});
             
         }else{
-            for(int i = 0; i< Clientes.size(); i++){
-                gen = Clientes.get(i);
+            for(int i = 0; i< ListaClientes.size(); i++){
+                gen = ListaClientes.get(i);
+                System.out.print(ListaClientes.get(i).getNome());
                 modelo. addRow(new String[]{Integer.toString(gen.getId()), gen.getNome()});
             }
         }
-        //modelo.setEnabled(false);
-        tabela.setModel(modelo);
+        jTable1.setModel(modelo);
+        this.tipo = 1;
     }
-        
-       public void dadostabelE(){
+    
+    public void dadostabelF(){
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("Codigo");
+        modelo.addColumn("Nome");
+        modelo.addColumn("Cpf");
+        Funcionario gen ;
+        if(ListaFuncionario.isEmpty()){
+            modelo.addRow(new String[]{"NADA","NADA","NADA"});
+            
+        }else{
+            for(int i = 0; i< ListaFuncionario.size(); i++){
+                gen = ListaFuncionario.get(i);
+                System.out.print(ListaFuncionario.get(i).getNome());
+                modelo. addRow(new String[]{Integer.toString(gen.getIdFuncionario()), gen.getNome(),gen.getCpf()});
+            }
+        }
+        jTable1.setModel(modelo);
+        this.tipo = 3;
+    }
+    public void dadostabelE(){
             DefaultTableModel modelo = new DefaultTableModel();
             modelo.addColumn("Codigo");
             modelo.addColumn("Nome");
@@ -122,19 +156,17 @@ public class TABELA_DIALOGO_SERVICO extends javax.swing.JDialog {
             Endereco gen;
             if(ListaEndereco.isEmpty()){
                 modelo.addRow(new String[]{"NADA","NADA"});
-
             }else{
                 for(int i = 0; i< ListaEndereco.size(); i++){
                     gen = ListaEndereco.get(i);
-                    
                     modelo. addRow(new String[]{Integer.toString(gen.getId()), gen.getNome()});
                 }
             }
             jTable1.setModel(modelo);
+            this.tipo = 0; 
     }
     public TABELA_DIALOGO_SERVICO(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        
         initComponents();
     }
 
@@ -203,7 +235,23 @@ public class TABELA_DIALOGO_SERVICO extends javax.swing.JDialog {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         int linha = jTable1.getSelectedRow();
-        setEndereco(ListaEndereco.get(linha));
+        System.out.print("Linha " + linha);
+        System.out.print("Tipo " + tipo);
+        switch(this.tipo){
+            case 0:
+                this.endereco = ListaEndereco.get(linha);
+                break;
+            case 1:
+                this.cliente = ListaClientes.get(linha);
+                break;
+            case 2:
+                this.veiculo = ListaVeiculo.get(linha);
+                break;
+            case 3:
+                this.funcionario = ListaFuncionario.get(linha);
+                break;
+        }
+       
         dispose();
     }//GEN-LAST:event_jTable1MouseClicked
 

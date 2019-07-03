@@ -12,7 +12,7 @@ package modelo;
 public class Motorista {
     
     private int idMotorista;
-    private int idFuncionario;
+    private Funcionario Funcionario;
     private String nome;
     private String dataVencimento;
     private String categoriaCnh;
@@ -36,8 +36,12 @@ public class Motorista {
         return this.dataVencimento;
     }
 
-    public int getIdFuncionario() {
-        return this.idFuncionario;
+    public Funcionario getFuncionario() {
+        return Funcionario;
+    }
+
+    public void setFuncionario(Funcionario Funcionario) {
+        this.Funcionario = Funcionario;
     }
 
     public int getIdMotorista() {
@@ -66,10 +70,6 @@ public class Motorista {
 
     public void setDataVencimento(String dataVencimento) {
         this.dataVencimento = dataVencimento;
-    }
-
-    public void setIdFuncionario(int idFuncionario) {
-        this.idFuncionario = idFuncionario;
     }
 
     public void setIdMotorista(int idMotorista) {

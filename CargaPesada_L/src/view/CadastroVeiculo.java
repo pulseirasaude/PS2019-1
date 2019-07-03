@@ -579,12 +579,13 @@ public class CadastroVeiculo extends javax.swing.JFrame  {
         int id_seguro = telaSeguro.getNovo().getIdSeguro();
         
 
-       Veiculo novoV = new Veiculo();      
+        Veiculo novoV = new Veiculo();      
         novoV.setNome(nomeVeiculo.getText());
         novoV.setPlaca(placa.getText());
         novoV.setTipoCombustivel(tipoCombustivel.getText());     
         novoV.setChassi(chassi.getText());
         novoV.setStatus(status.getText());
+        novoV.setIdMotorista(1);
         
         Modelo novoM = new Modelo();
         novoM.setAno(ano.getText());        

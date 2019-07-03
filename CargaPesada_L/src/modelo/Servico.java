@@ -18,13 +18,13 @@ public class Servico
     private float valorContrato;
     private String dataInicio;
     private String dataFim;
-    private int idCliente;
+    private Cliente Cliente;
     private int idFuncionario;
-    private int idVeiculo;
+    private Veiculo Veiculo;
     //atributos relacionados a carga.
     private String tipo;
     private double peso;
-    private String volume;
+    private Float volume;
     private int quantidade;
     private String distancia;
 
@@ -44,11 +44,11 @@ public class Servico
         this.peso = peso;
     }
 
-    public String getVolume() {
+    public float getVolume() {
         return volume;
     }
 
-    public void setVolume(String volume) {
+    public void setVolume(float volume) {
         this.volume = volume;
     }
 
@@ -100,16 +100,16 @@ public class Servico
         return this.dataFim;
     }
 
-    public int getIdCliente() {
-        return this.idCliente;
+    public Cliente getCliente() {
+        return this.Cliente;
     }
 
     public int getIdFuncionario() {
         return this.idFuncionario;
     }
 
-    public int getIdVeiculo() {
-        return this.idVeiculo;
+    public Veiculo getVeiculo() {
+        return this.Veiculo;
     }
 
     public void setIdServico(int idServico) {
@@ -140,15 +140,15 @@ public class Servico
         this.dataFim = dataFim;
     }
 
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
+    public void setCliente(Cliente Cliente) {
+        this.Cliente = Cliente;
     }
 
     public void setIdFuncionario(int idFuncionario) {
         this.idFuncionario = idFuncionario;
     }
 
-    public void setIdVeiculo(int idVeiculo) {
-        this.idVeiculo = idVeiculo;
+    public void setVeiculo(Veiculo Veiculo) {
+        this.Veiculo = Veiculo;
     }
 }

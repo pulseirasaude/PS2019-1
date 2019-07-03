@@ -36,7 +36,7 @@ public class MotoristaBD implements InterfaceBD{
             motorista.setCategoriaCnh(rs.getString("CATEGORIA_CNH"));
             motorista.setCnh(rs.getString("CNH"));
             motorista.setDataVencimento(rs.getString("DATA_VENCIMENTO"));
-            motorista.setIdFuncionario(rs.getInt("ID_FUNCIONARIO"));
+           // motorista.setFuncionario(rs.getInt("ID_FUNCIONARIO"));
 
 
             //Classes que compõe um funcionario
@@ -57,13 +57,19 @@ public class MotoristaBD implements InterfaceBD{
     public void insert(Object obj) throws SQLException {
         Connection c;
         c = ConexaoBD.getInstance();
-        Statement stmt;
+            Statement stmt;
         Motorista novo = (Motorista)obj;
         ResultSet rs;
         stmt = c.createStatement();
+        System.out.println(novo.getCnh());
+        System.out.println(novo.getDataVencimento());
+        System.out.println(novo.getCategoriaCnh());
+        System.out.println(novo.getFuncionario().getIdFuncionario());
+        System.out.println("INSERT INTO MOTORISTA(CNH, DATA_VENCIMENTO, CATEGORIA_CNH, ID_FUNCIONARIO) values("
+                + novo.getCnh()+",'" + novo.getDataVencimento()+ "','" + novo.getCategoriaCnh()+"','"+ novo.getFuncionario().getIdFuncionario() +"')");
         rs = stmt.executeQuery("INSERT INTO MOTORISTA(CNH, DATA_VENCIMENTO, CATEGORIA_CNH, ID_FUNCIONARIO) values("
-                + novo.getCnh()+",'" + novo.getDataVencimento()+ "','" + novo.getCategoriaCnh()+","+ novo.getIdFuncionario() +"')");
-        rs.close();
+                + novo.getCnh()+",'" + novo.getDataVencimento()+ "','" + novo.getCategoriaCnh()+"','"+ novo.getFuncionario().getIdFuncionario() +"')");
+        
         stmt.close();
         c.close();      }
 
@@ -90,7 +96,7 @@ public class MotoristaBD implements InterfaceBD{
                 + "SET CNH ="+ novo.getCnh() + ", "
                 + "DATA_VENCIMENTO="+ novo.getDataVencimento() + ", "
                 + "CATEGORIA_CNH="+ novo.getCategoriaCnh() + ", "
-                + "ID_FUNCIONARIO="+ novo.getIdFuncionario() + " "
+                + "ID_FUNCIONARIO="+ novo.getFuncionario().getIdFuncionario() + " "
                 + "WHERE id ="+ novo.getIdMotorista() + ";";
         stmt.executeUpdate(sql);
         stmt.close();

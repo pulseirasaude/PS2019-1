@@ -21,21 +21,21 @@ public class ConexaoBD {
                 Connection c;
                 
                   
-                 String USUARIO = "nqygzcvg";;
+                /* String USUARIO = "nqygzcvg";;
                  String SENHA = "Mr6i5_qmB1mEiJRKTbiQPDB1qXaHGqZ1";
                  //String URL = "jdbc:postgresql://localhost:5432/CARGAPESADA_4";
                  String URL = "jdbc:postgresql://stampy.db.elephantsql.com:5432/nqygzcvg";
+                */
                  
-                 /*
                  String USUARIO = "postgres";
-                 String SENHA = "serra";
+                 String SENHA = "root";
                  //String URL = "jdbc:postgresql://localhost:5432/CARGAPESADA_4";
                  String URL = "jdbc:postgresql://localhost:5432/CARGAPESADA";
-                    String USUARIO = "postgres";
-                 String SENHA = "bancodedados";
+                 //String USUARIO = "postgres";
+                 //String SENHA = "bancodedados";
                  //String URL = "jdbc:postgresql://localhost:5432/CARGAPESADA_4";
-                 String URL = "jdbc:postgresql://localhost:5432/CARGAPESADA";
-                */ 
+                 //String URL = "jdbc:postgresql://localhost:5432/CARGAPESADA";
+                 
                  
              
                 c =  DriverManager.getConnection(URL, USUARIO, SENHA);

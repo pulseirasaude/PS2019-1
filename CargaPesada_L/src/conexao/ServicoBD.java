@@ -19,12 +19,12 @@ public class ServicoBD implements InterfaceBD{
 
     @Override
     public ArrayList select(String condicao) throws SQLException {
-         ArrayList listServico = new ArrayList();
+        ArrayList listServico = new ArrayList();
         Connection c;
         Statement stmt;
         c = ConexaoBD.getInstance();
         stmt = c.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM SERVICO;");
+        ResultSet rs = stmt.executeQuery("SELECT * FROM SERVICO" + condicao);
         while (rs.next()) {
 
             //OS DOIS CAMPOS PREENCHIDOS NAO ACEITAM NULL, PROCURAR SOLUÇÃO
@@ -37,12 +37,12 @@ public class ServicoBD implements InterfaceBD{
             servico.setDataFim(rs.getString("DATA_FIM"));
             servico.setDistancia(rs.getString("DISTANCIA"));
             servico.setQuantidade(rs.getInt("QUANTIDADE"));
-            servico.setVolume(rs.getString("VOLUME"));
+            servico.setVolume(rs.getFloat("VOLUME"));
             servico.setTipo(rs.getString("TIPO"));
             servico.setPeso(rs.getFloat("PESO"));
-            servico.setIdCliente(rs.getInt("ID_CLIENTE"));
+            servico.setCliente(null);
             servico.setIdFuncionario(rs.getInt("ID_FUNCIONARIO"));
-            servico.setIdVeiculo(rs.getInt("ID_VEICULO"));
+            servico.setVeiculo(null);
             //Classes que compõe um funcionario
 
             //funcionario.setContato(rs.getString("CONTATO"));
@@ -73,11 +73,11 @@ public class ServicoBD implements InterfaceBD{
                 "','"+ novo.getDataFim()+
                 "','"+ novo.getTipo()+
                 "',"+ novo.getPeso()+
-                ",'"+ novo.getVolume()+
-                "',"+ novo.getQuantidade()+
+                ","+ novo.getVolume()+
+                ","+ novo.getQuantidade()+
                 ",'"+ novo.getDistancia()+
-                "',"+ novo.getIdCliente()+
-                ",2," + novo.getIdVeiculo()+") RETURNING id");
+                "',"+ novo.getCliente().getId()+
+                ",1," + novo.getVeiculo().getId()+") RETURNING id");
         if(rs.next()){
             novo.setIdServico(rs.getInt(1));
         }
@@ -115,9 +115,9 @@ public class ServicoBD implements InterfaceBD{
                 + "VOLUME="+ novo.getVolume() + ", "
                 + "QUANTIDADE="+ novo.getQuantidade() + ", "
                 + "DISTANCIA="+ novo.getDistancia() + ", "
-                + "ID_CLIENTE="+ novo.getIdCliente() + ", "
+                + "ID_CLIENTE="+ novo.getCliente() + ", "
                 + "ID_FUNCIONARIO="+ novo.getIdFuncionario() + ", "
-                + "ID_VEICULO="+ novo.getIdVeiculo() + " "
+                + "ID_VEICULO="+ novo.getVeiculo() + " "
                 + "WHERE id ="+ novo.getIdServico() + ";";
         stmt.executeUpdate(sql);
         stmt.close();
