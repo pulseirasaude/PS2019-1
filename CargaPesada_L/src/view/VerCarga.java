@@ -7,6 +7,8 @@ package view;
 
 import conexao.AplicacoesBD;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -53,9 +55,7 @@ public class VerCarga extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel27 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
-        dataChegada = new javax.swing.JFormattedTextField();
         jLabel37 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         verificar = new javax.swing.JButton();
@@ -67,22 +67,8 @@ public class VerCarga extends javax.swing.JDialog {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel27.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel27.setText("Data Chegada");
-
         jLabel29.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel29.setText("Nome Motorista");
-
-        try {
-            dataChegada.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####-##-##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        dataChegada.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dataChegadaActionPerformed(evt);
-            }
-        });
 
         jLabel37.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel37.setText("Carga");
@@ -133,54 +119,51 @@ public class VerCarga extends javax.swing.JDialog {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(carga, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(motorista, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(dataChegada, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel27))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(59, 59, 59)
+                                .addComponent(jLabel29))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(40, 40, 40)
+                                .addComponent(motorista, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(103, 103, 103)
+                                .addComponent(jLabel37))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(52, 52, 52)
+                                .addComponent(carga, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 25, Short.MAX_VALUE)
+                        .addComponent(jLabel1)))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addContainerGap()
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel29)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(104, 104, 104)
-                            .addComponent(jLabel1))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(verificar)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(voltar))
-                        .addComponent(jLabel37))
-                    .addContainerGap(57, Short.MAX_VALUE)))
+                    .addComponent(verificar)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(voltar)
+                    .addContainerGap(77, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(107, 107, 107)
-                .addComponent(jLabel27)
+                .addGap(33, 33, 33)
+                .addComponent(jLabel1)
+                .addGap(42, 42, 42)
+                .addComponent(jLabel29)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(dataChegada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(motorista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(51, 51, 51)
+                .addComponent(motorista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel37)
+                .addGap(11, 11, 11)
                 .addComponent(carga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(104, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jLabel1)
-                    .addGap(62, 62, 62)
-                    .addComponent(jLabel29)
-                    .addGap(51, 51, 51)
-                    .addComponent(jLabel37)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
+                    .addContainerGap(293, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(verificar)
                         .addComponent(voltar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -191,28 +174,27 @@ public class VerCarga extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void dataChegadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataChegadaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dataChegadaActionPerformed
-
     private void verificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_verificarMouseClicked
         String id = Integer.toString(servico.getIdServico());
         String tipo = servico.getTipo();
+        Date dataHoraAtual = new Date();
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        String dataChegada = formato.format(dataHoraAtual);    
         if(tipo.equals("liquido")){
             double volume = Double.parseDouble(carga.getText());
             VerificaCargaVolume cargaVolume = new VerificaCargaVolume();
             try {
-                cargaVolume.VerificaTemplate(servico, volume, dataChegada.getText(), motorista.getText());
+                cargaVolume.VerificaTemplate(servico, volume, dataChegada, motorista.getText());
                 this.resultado = cargaVolume.getResultado();
             } catch (ParseException ex) {
                 Logger.getLogger(VerificaCarga.class.getName()).log(Level.SEVERE, null, ex);
@@ -222,7 +204,7 @@ public class VerCarga extends javax.swing.JDialog {
             VerificaCargaPeso cargaPeso = new VerificaCargaPeso();
             try {
 
-                cargaPeso.VerificaTemplate(servico, peso, dataChegada.getText(), motorista.getText());
+                cargaPeso.VerificaTemplate(servico, peso, dataChegada, motorista.getText());
                 this.resultado = cargaPeso.getResultado();
             } catch (ParseException ex) {
                 Logger.getLogger(VerificaCarga.class.getName()).log(Level.SEVERE, null, ex);
@@ -231,7 +213,7 @@ public class VerCarga extends javax.swing.JDialog {
             double quantidade = Double.parseDouble(carga.getText());
             VerificaCargaQuantidade cargaQuant = new VerificaCargaQuantidade();
             try {
-                cargaQuant.VerificaTemplate(servico, quantidade, dataChegada.getText(), motorista.getText());
+                cargaQuant.VerificaTemplate(servico, quantidade, dataChegada, motorista.getText());
                 this.resultado = cargaQuant.getResultado();
             } catch (ParseException ex) {
                 Logger.getLogger(VerificaCarga.class.getName()).log(Level.SEVERE, null, ex);
@@ -315,9 +297,7 @@ public class VerCarga extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField carga;
-    private javax.swing.JFormattedTextField dataChegada;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JPanel jPanel1;

@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import modelo.Motorista;
 
 /**
  *
@@ -41,7 +42,7 @@ public class VeiculoBD implements InterfaceBD{
             veiculo.setStatus(rs.getString("STATUS"));
             veiculo.setTipoCombustivel(rs.getString("COMBUSTIVEL"));
             veiculo.setIdCategoria(rs.getInt("ID_CATEGORIA"));
-            veiculo.setIdMotorista(rs.getInt("ID_MOTORISTA"));
+            veiculo.setMotorista(new Motorista());
             veiculo.setIdModelo(rs.getInt("ID_MODELO"));
             veiculo.setIdSeguro(rs.getInt("ID_SEGURO"));
             veiculo.setIdFinanciamento(rs.getInt("ID_FINANCIAMENTO"));
@@ -81,7 +82,7 @@ public class VeiculoBD implements InterfaceBD{
                 ","+ novo.getIdFinanciamento()+
                 ","+ novo.getIdSeguro()+
                 ","+ novo.getIdModelo()+
-                ","+ novo.getIdMotorista() +") RETURNING id");
+                ","+ novo.getMotorista().getIdMotorista() +") RETURNING id");
         
         stmt.close();
         c.close();  
@@ -113,7 +114,7 @@ public class VeiculoBD implements InterfaceBD{
                 + "COMBUSTIVEL="+ novo.getTipoCombustivel() + ", "
                 + "ID_CATEGORIA="+ novo.getIdCategoria() + ", "
                 + "ID_MODELO="+ novo.getIdModelo() + ", "
-                + "ID_MOTORISTA="+ novo.getIdMotorista() + " "
+                + "ID_MOTORISTA="+ novo.getMotorista().getIdMotorista() + " "
                 + "WHERE id ="+ novo.getIdModelo() + ";";
         stmt.executeUpdate(sql);
         stmt.close();

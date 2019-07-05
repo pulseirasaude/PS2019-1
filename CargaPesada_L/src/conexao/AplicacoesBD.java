@@ -5,7 +5,10 @@
  */
 package conexao;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -20,20 +23,44 @@ import view.CadastroServico;
  * @author 20171bsi0367
  */
 public class AplicacoesBD {
-    public ArrayList ProcuraVeiculo (String procura){
-        ArrayList<Veiculo> veiculoL = new ArrayList<Veiculo>();
-        VeiculoBD veiculo = new VeiculoBD();
-        
-        
-        try {
-            veiculoL = veiculo.select("where nome ilike '%" + procura + "%'");
-        } catch (SQLException ex) {
-            Logger.getLogger(CadastroServico.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        return veiculoL;
-    }
     
+    public ArrayList ProcuraVeiculo(String condicao) throws SQLException {
+        List<Veiculo> listVeiculos = new ArrayList<Veiculo>();
+        Connection c;
+        Statement stmt;
+       
+        c = ConexaoBD.getInstance();
+        stmt = c.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT v.*, m.data_vencimento, f.nome nome_f FROM VEICULO as v \n" +
+        "inner join motorista as m on(id_motorista = m.id) \n" +
+        "inner join funcionario as f on(m.id_funcionario = f.id)\n" +
+        "where v.nome ilike '%" + condicao + "%'");
+        while (rs.next()) {
+            Veiculo veiculo = new Veiculo();
+            veiculo.setId(rs.getInt("ID"));
+            veiculo.setNome(rs.getString("NOME"));            
+            veiculo.setPlaca(rs.getString("PLACA"));
+            veiculo.setChassi(rs.getString("CHASSI"));
+            veiculo.setStatus(rs.getString("STATUS"));
+            veiculo.setTipoCombustivel(rs.getString("COMBUSTIVEL"));
+            veiculo.setIdCategoria(rs.getInt("ID_CATEGORIA"));
+            veiculo.setMotorista(new Motorista());
+            veiculo.getMotorista().setNome(rs.getString("NOME_F"));
+            veiculo.getMotorista().setDataVencimento(rs.getString("DATA_VENCIMENTO"));
+            veiculo.setIdModelo(rs.getInt("ID_MODELO"));
+            veiculo.setIdSeguro(rs.getInt("ID_SEGURO"));
+            veiculo.setIdFinanciamento(rs.getInt("ID_FINANCIAMENTO"));
+            
+
+            listVeiculos.add(veiculo);
+        }
+        rs.close();
+        stmt.close();
+        c.close();
+
+        return (ArrayList) listVeiculos;
+    }
+
     public ArrayList ProcuraFuncionario (String procura){
         ArrayList<Funcionario> funcionarioL = new ArrayList<Funcionario>();
         FuncionarioBD funcionario = new FuncionarioBD();

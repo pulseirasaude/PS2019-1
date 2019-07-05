@@ -19,7 +19,7 @@ public class Veiculo {
     private int idCategoria = 1;
     private int idSeguro;
     private int idModelo;   //referente ao ID
-    private int idMotorista;
+    private Motorista motorista;
     private int idFinanciamento;
     private String nome;
 
@@ -39,8 +39,8 @@ public class Veiculo {
         return this.idModelo;
     }
 
-    public int getIdMotorista() {
-        return this.idMotorista;
+    public Motorista getMotorista() {
+        return this.motorista;
     }
 
     public int getIdSeguro() {
@@ -83,8 +83,8 @@ public class Veiculo {
         this.idModelo = idModelo;
     }
 
-    public void setIdMotorista(int idMotorista) {
-        this.idMotorista = idMotorista;
+    public void setMotorista(Motorista idMotorista) {
+        this.motorista = idMotorista;
     }
 
     public void setIdSeguro(int idSeguro) {

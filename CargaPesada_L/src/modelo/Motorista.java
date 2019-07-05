@@ -5,6 +5,10 @@
  */
 package modelo;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  *
  * @author 20181bsi0172
@@ -20,6 +24,22 @@ public class Motorista {
     private String cnh;
     private float salario;
 
+    
+    
+    public boolean verificaCnh() throws ParseException{
+            Date dataHoraAtual = new Date();
+            SimpleDateFormat formato = new SimpleDateFormat("yyyy-mm-dd");
+            //String data_atual = formato.format(dataHoraAtual);    
+            System.out.print(dataVencimento);
+            Date dataD = formato.parse(dataVencimento);
+            
+            if(dataD.compareTo(dataHoraAtual) > 0){
+                return true;
+            }
+            
+            return false;
+    }
+    
     public String getCategoriaCnh() {
         return this.categoriaCnh;
     }

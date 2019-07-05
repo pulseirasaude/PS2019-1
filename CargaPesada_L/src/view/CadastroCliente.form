@@ -211,6 +211,7 @@
         <Component class="javax.swing.JTextField" name="tipo_cliente">
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tipo_clienteActionPerformed"/>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tipo_clienteKeyReleased"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="voltar">
@@ -293,6 +294,7 @@
         <Component class="javax.swing.JTextField" name="tipo_cliente_fisico">
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tipo_cliente_fisicoActionPerformed"/>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tipo_cliente_fisicoKeyReleased"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel23">

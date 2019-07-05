@@ -41,7 +41,7 @@ public class ClienteBD implements InterfaceBD{
             // FALTA DATA DE CADASTRO
             cliente.setCnpj(rs.getString("CNPJ"));
             cliente.setCpf(rs.getString("CPF"));
-
+            cliente.setStatus(rs.getString("STATUS"));
             listCliente.add(cliente);
         }
         
@@ -60,9 +60,9 @@ public class ClienteBD implements InterfaceBD{
         Cliente novo = (Cliente)obj;
         ResultSet rs;
         stmt = c.createStatement();
-        rs = stmt.executeQuery("INSERT INTO CLIENTE(NOME, TIPO_CLIENTE, CNPJ, CPF, DATA_CADASTRO) values('"
+        rs = stmt.executeQuery("INSERT INTO CLIENTE(NOME, TIPO_CLIENTE, CNPJ, CPF, DATA_CADASTRO, STATUS) values('"
                 + ""+ novo.getNome() +"','" + novo.getTipo_cliente()+ "','" + novo.getCnpj()+ "','"
-                + novo.getCpf() + "','"+ novo.getData_atual() + "') returning id");
+                + novo.getCpf() + "','"+ novo.getData_atual() + "','normal') returning id");
          if(rs.next()){
             novo.setId(rs.getInt(1));
         }

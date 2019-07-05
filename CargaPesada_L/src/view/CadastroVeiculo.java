@@ -585,7 +585,8 @@ public class CadastroVeiculo extends javax.swing.JFrame  {
         novoV.setTipoCombustivel(tipoCombustivel.getText());     
         novoV.setChassi(chassi.getText());
         novoV.setStatus(status.getText());
-        novoV.setIdMotorista(1);
+        novoV.setMotorista(new Motorista());
+        novoV.getMotorista().setIdMotorista(1);
         
         Modelo novoM = new Modelo();
         novoM.setAno(ano.getText());        

@@ -200,7 +200,7 @@ public class TABELA extends javax.swing.JFrame {
                                 (gen.getChassi()),
                                 (gen.getPlaca()),
                                 Integer.toString(gen.getIdModelo()),
-                                Integer.toString(gen.getIdMotorista()),
+                                Integer.toString(gen.getMotorista().getIdMotorista()),
                                 Integer.toString(gen.getIdSeguro()),
                                 Integer.toString(gen.getIdCategoria()),
                                 "X","X"});

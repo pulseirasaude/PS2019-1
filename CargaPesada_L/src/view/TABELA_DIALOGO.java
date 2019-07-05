@@ -63,7 +63,7 @@ public class TABELA_DIALOGO extends javax.swing.JDialog {
                                 (gen.getChassi()),
                                 (gen.getPlaca()),
                                 Integer.toString(gen.getIdModelo()),
-                                Integer.toString(gen.getIdMotorista()),
+                                gen.getMotorista().getNome(),
                                 Integer.toString(gen.getIdSeguro()),
                                 Integer.toString(gen.getIdCategoria()),
                                 });

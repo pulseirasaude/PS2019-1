@@ -128,6 +128,11 @@ public class CadastroCliente extends javax.swing.JFrame {
                 tipo_clienteActionPerformed(evt);
             }
         });
+        tipo_cliente.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tipo_clienteKeyReleased(evt);
+            }
+        });
 
         voltar.setText("VOLTAR");
         voltar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -200,6 +205,11 @@ public class CadastroCliente extends javax.swing.JFrame {
         tipo_cliente_fisico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tipo_cliente_fisicoActionPerformed(evt);
+            }
+        });
+        tipo_cliente_fisico.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tipo_cliente_fisicoKeyReleased(evt);
             }
         });
 
@@ -539,6 +549,29 @@ public class CadastroCliente extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_telefone3KeyReleased
+
+    private void tipo_cliente_fisicoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tipo_cliente_fisicoKeyReleased
+        // TODO add your handling code here:
+        if(tipo_cliente_fisico.getText().length() >= 12){
+            try {
+                tipo_cliente_fisico.setText(tipo_cliente_fisico.getText(0, 12));
+            } catch (BadLocationException ex) {
+                Logger.getLogger(CadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_tipo_cliente_fisicoKeyReleased
+
+    private void tipo_clienteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tipo_clienteKeyReleased
+        // TODO add your handling code here:
+        
+        if(tipo_cliente.getText().length() >= 14){
+            try {
+                tipo_cliente.setText(tipo_cliente.getText(0, 14));
+            } catch (BadLocationException ex) {
+                Logger.getLogger(CadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_tipo_clienteKeyReleased
 
     /**
      * @param args the command line arguments

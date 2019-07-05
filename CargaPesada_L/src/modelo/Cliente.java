@@ -24,7 +24,17 @@ public class Cliente{
         private String tipo_cliente;
         private String email;
         private int idContato;
+        private String status;
 
+    public String retornaStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+        
+        
     public String getCnpj(){
         return this.cnpj;
     }

@@ -71,8 +71,7 @@ public class TABELA_DIALOGO_SERVICO extends javax.swing.JDialog {
    
     
     public void dadostabelV(){
-        DefaultTableModel modelo = new DefaultTableModel();
-        
+        DefaultTableModel modelo = new DefaultTableModel();    
         modelo.addColumn("Codigo");
         modelo.addColumn("Nome");
         modelo.addColumn("Chassi");
@@ -94,7 +93,7 @@ public class TABELA_DIALOGO_SERVICO extends javax.swing.JDialog {
                                 (gen.getChassi()),
                                 (gen.getPlaca()),
                                 Integer.toString(gen.getIdModelo()),
-                                Integer.toString(gen.getIdMotorista()),
+                                gen.getMotorista().getNome(),
                                 Integer.toString(gen.getIdSeguro()),
                                 Integer.toString(gen.getIdCategoria()),
                                 });

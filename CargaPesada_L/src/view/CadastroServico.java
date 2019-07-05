@@ -8,6 +8,7 @@ package view;
 import conexao.*;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -183,6 +184,11 @@ public class CadastroServico extends javax.swing.JFrame {
         });
 
         endOrigem.setText("BUCAR ENDERECO EXISTENTE");
+        endOrigem.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                endOrigemMouseClicked(evt);
+            }
+        });
         endOrigem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 endOrigemActionPerformed(evt);
@@ -195,6 +201,11 @@ public class CadastroServico extends javax.swing.JFrame {
         });
 
         endDestino.setText("BUCAR ENDERECO EXISTENTE");
+        endDestino.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                endDestinoMouseClicked(evt);
+            }
+        });
         endDestino.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 endDestinoActionPerformed(evt);
@@ -206,7 +217,7 @@ public class CadastroServico extends javax.swing.JFrame {
             }
         });
 
-        Status.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        Status.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "REGISTRADO", "AUTORIZADO", "EM ESPERA", "CARREGANDO", "EM TRANSPORTE", "CONCLUIDO" }));
         Status.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 StatusMouseClicked(evt);
@@ -276,6 +287,11 @@ public class CadastroServico extends javax.swing.JFrame {
         valorContrato.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 valorContratoActionPerformed(evt);
+            }
+        });
+        valorContrato.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                valorContratoKeyPressed(evt);
             }
         });
 
@@ -596,11 +612,25 @@ public class CadastroServico extends javax.swing.JFrame {
     private void nomeVeiculoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nomeVeiculoKeyPressed
      
         if(evt.getKeyCode() == evt.VK_ENTER){
-            dialog.setListaVeiculo(aplicacao.ProcuraVeiculo(nomeVeiculo.getText())); 
+            try { 
+                dialog.setListaVeiculo(aplicacao.ProcuraVeiculo(nomeVeiculo.getText()));
+            } catch (SQLException ex) {
+                Logger.getLogger(CadastroServico.class.getName()).log(Level.SEVERE, null, ex);
+            }
             dialog.dadostabelV();
             dialog.setVisible(true);
             nomeVeiculo.setText(dialog.getVeiculo().getNome());
-            this.veic = dialog.getVeiculo();
+            try {
+                if (dialog.getVeiculo().getMotorista().verificaCnh()){
+                    this.veic = dialog.getVeiculo();
+                }
+                else
+                    JOptionPane.showMessageDialog(null,"VEICULO NAO ALOCADO, MOTORISTA COM CNH VENCIDA!");
+                
+            } catch (ParseException ex) {
+                Logger.getLogger(CadastroServico.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
         }
     }//GEN-LAST:event_nomeVeiculoKeyPressed
 
@@ -730,6 +760,7 @@ public class CadastroServico extends javax.swing.JFrame {
         // TODO add your handling code here:
         int i = JOptionPane.showConfirmDialog(null,"Confirma a alteração do status?");
         if(i == JOptionPane.YES_OPTION) {              
+            if(Status.getSelectedItem().equals("CONCLUIDO")){
             VerCarga dialog = new VerCarga(new javax.swing.JFrame(), true);
             dialog.setServico(serv);
             dialog.setVisible(true);
@@ -741,14 +772,48 @@ public class CadastroServico extends javax.swing.JFrame {
                 }
                 else{
                     JOptionPane.showMessageDialog(null,"Servico nao atualizado! Por inconsistencia com dados iniciais!");
-           
+                    i = JOptionPane.showConfirmDialog(null,"Confirma a alteração do status mesmo com erros?");
+                    if(i == JOptionPane.YES_OPTION){
+                        aplicacao.atualizaStatus(serv);
+                    }
+                    else if(i == JOptionPane.NO_OPTION){
+                        JOptionPane.showMessageDialog(null,"Servico nao atualizado!");
+                    }
                 }
                 
             } catch (SQLException ex) {
                 Logger.getLogger(CadastroServico.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
+         }
+       }
     }//GEN-LAST:event_alterarMouseClicked
+
+    private void endOrigemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_endOrigemMouseClicked
+        // TODO add your handling code here:
+        endOrigem.setText("");
+    }//GEN-LAST:event_endOrigemMouseClicked
+
+    private void endDestinoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_endDestinoMouseClicked
+        // TODO add your handling code here:
+        endDestino.setText("");
+    }//GEN-LAST:event_endDestinoMouseClicked
+
+    public void calculaTotal(){
+        if(cli.retornaStatus().equals("bom pagador")){
+            JOptionPane.showMessageDialog(null,"Cliente com desconto de bom pagador!");
+            valorContrato.setValue(0.9*Double.parseDouble(valorContrato.getText()));
+            
+        }
+        else
+            JOptionPane.showMessageDialog(null,"Cliente sem desconto de bom pagador!");
+    }
+    private void valorContratoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_valorContratoKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == evt.VK_ENTER){
+            calculaTotal();
+           
+        }
+    }//GEN-LAST:event_valorContratoKeyPressed
 
     /**
      * @param args the command line arguments
